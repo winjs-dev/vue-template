@@ -70,14 +70,7 @@ module.exports = {
         }
       ]
     },
-    "unit": {
-      "type": "confirm",
-      "message": "Setup unit tests with Karma + Mocha?"
-    },
-    "e2e": {
-      "type": "confirm",
-      "message": "Setup e2e tests with Nightwatch?"
-    }
+
   },
   "filters": {
     ".eslintrc.js": "lint",
@@ -88,5 +81,5 @@ module.exports = {
     "test/e2e/**/*": "e2e",
     "src/router/**/*": "router"
   },
-  "completeMessage": "To get started:\n\n  cd {{destDirName}}\n  npm install\n  npm run dev\n\nDocumentation can be found at https://vuejs-templates.github.io/webpack"
+  "completeMessage": "To get started:\n\n  cd {{destDirName}}\n  npm install\n  npm run dll \n npm run dev"
 };
