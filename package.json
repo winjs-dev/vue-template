@@ -2,12 +2,10 @@
   "name": "vue-template",
   "version": "0.0.1",
   "license": "MIT",
-  "description": "A full-featured Webpack setup with hot-reload, lint-on-save, unit testing & css extraction.",
+  "description": "A full-featured Webpack setup with hot-reload, lint-on-save, & css extraction.",
   "scripts": {
-    "docs": "cd docs && gitbook serve",
-    "docs:deploy": "bash ./deploy-docs.sh"
   },
   "devDependencies": {
-    "cloud-cli": "^0.1.1"
+    "cloud-cli": "^1.1.1"
   }
 }

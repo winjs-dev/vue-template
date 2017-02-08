@@ -69,17 +69,12 @@ module.exports = {
           "short": "none"
         }
       ]
-    },
-
+    }
   },
   "filters": {
     ".eslintrc.js": "lint",
     ".eslintignore": "lint",
-    "config/test.env.js": "unit || e2e",
-    "test/unit/**/*": "unit",
-    "build/webpack.test.conf.js": "unit",
-    "test/e2e/**/*": "e2e",
     "src/router/**/*": "router"
   },
-  "completeMessage": "To get started:\n\n  cd {{destDirName}}\n  npm install\n  npm run dll \n npm run dev"
+    "completeMessage": "To get started:\n\n  cd {{destDirName}}\n  npm install\n  npm run dll\n  npm run dev（开发专用）\n  npm run build（线上专用）"
 };
