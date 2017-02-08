@@ -23,15 +23,6 @@ module.exports = {
     "author": {
       "type": "string",
       "message": "Author"
-    },
-    "build": {
-
-    },
-    "lint": {
-
-    },
-    "lintConfig": {
-
     }
   },
   "filters": {
