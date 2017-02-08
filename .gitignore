@@ -1,4 +1,4 @@
-
+.DS_Store
 # Logs
 logs
 *.log
@@ -50,6 +50,9 @@ jspm_packages
 # Idea
 .idea
 
+#Dll
+dll
+
 # Dev
 dev
 
@@ -58,4 +61,3 @@ dist
 
 .project
 .happypack
-

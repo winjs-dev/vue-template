@@ -1,0 +1,380 @@
+.transition(@d) {
+  -webkit-transition-duration: @d;
+  transition-duration: @d;
+}
+
+.delay(@d) {
+  -webkit-transition-delay: @d;
+  transition-delay: @d;
+}
+
+.transform(@t) {
+  -webkit-transform: @t;
+  transform: @t;
+}
+
+.transform-origin(@to) {
+  -webkit-transform-origin: @to;
+  transform-origin: @to;
+}
+
+.translate3d(@x:0, @y:0, @z:0) {
+  -webkit-transform: translate3d(@x, @y, @z);
+  transform: translate3d(@x, @y, @z);
+}
+
+.animation(@a) {
+  -webkit-animation: @a;
+  animation: @a;
+}
+
+.scrollable() {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.flexbox() {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.flexbox-inline() {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: -webkit-inline-flex;
+  display: inline-flex;
+}
+
+.flex-wrap(@fw) when (@fw = nowrap) {
+  -webkit-box-lines: single;
+  -moz-box-lines: single;
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: none;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+}
+
+.flex-wrap(@fw) when (@fw = wrap) {
+  -webkit-box-lines: multiple;
+  -moz-box-lines: multiple;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.flex-wrap(@fw) when not (@fw = wrap) and not (@fw = nowrap) {
+  -webkit-flex-wrap: @fw;
+  -ms-flex-wrap: @fw;
+  flex-wrap: @fw;
+}
+
+.flex-shrink(@fs) {
+  -webkit-flex-shrink: @fs;
+  -ms-flex: 0 @fs auto;
+  flex-shrink: @fs;
+}
+
+.justify-content(@jc) when (@jc = flex-start) {
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+}
+
+.justify-content(@jc) when (@jc = flex-end) {
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  -webkit-justify-content: flex-end;
+  justify-content: flex-end;
+}
+
+.justify-content(@jc) when (@jc = space-between) {
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+
+.justify-content(@jc) when not (@jc = flex-start) and not (@jc = flex-end) and not (@jc = space-between) {
+  -webkit-box-pack: @jc;
+  -ms-flex-pack: @jc;
+  -webkit-justify-content: @jc;
+  justify-content: @jc;
+}
+
+.align-items(@ai) when (@ai = flex-start) {
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+}
+
+.align-items(@ai) when (@ai = flex-end) {
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  -webkit-align-items: flex-end;
+  align-items: flex-end;
+}
+
+.align-items(@ai) when not (@ai = flex-start) and not (@ai = flex-end) {
+  -webkit-box-align: @ai;
+  -ms-flex-align: @ai;
+  -webkit-align-items: @ai;
+  align-items: @ai;
+}
+
+.align-content(@ai) {
+  -ms-flex-line-pack: @ai;
+  -webkit-align-content: @ai;
+  align-content: @ai;
+}
+
+.align-self(@as) {
+  -ms-flex-item-align: @as;
+  -webkit-align-self: @as;
+  align-self: @as;
+}
+
+.clearfix() {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+.hairline(@position, @color) when (@position = top) {
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: auto;
+    right: auto;
+    height: 1Px;
+    width: 100%;
+    display: block;
+    z-index: 15;
+    background-image: -webkit-linear-gradient(top, @color, @color 50%, transparent 0);
+    background-image: linear-gradient(180deg, @color, @color 50%, transparent 0);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-origin: content-box;
+  }
+}
+
+.hairline(@position, @color) when (@position = left) {
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: auto;
+    right: auto;
+    width: 1Px;
+    height: 100%;
+    display: block;
+    z-index: 15;
+    background-image: -webkit-linear-gradient(top, @color, @color 50%, transparent 0);
+    background-image: linear-gradient(180deg, @color, @color 50%, transparent 0);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-origin: content-box;
+  }
+}
+
+.hairline(@position, @color) when (@position = bottom) {
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: auto;
+    top: auto;
+    height: 1Px;
+    width: 100%;
+    display: block;
+    z-index: 15;
+    background-image: -webkit-linear-gradient(top, @color, @color 50%, transparent 0);
+    background-image: linear-gradient(180deg, @color, @color 50%, transparent 0);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-origin: content-box;
+  }
+}
+
+.hairline(@position, @color) when (@position = right) {
+  &:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    left: auto;
+    bottom: auto;
+    width: 1Px;
+    height: 100%;
+    display: block;
+    z-index: 15;
+    background-image: -webkit-linear-gradient(top, @color, @color 50%, transparent 0);
+    background-image: linear-gradient(180deg, @color, @color 50%, transparent 0);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-origin: content-box;
+  }
+}
+
+// For right and bottom
+.hairline-remove(@position) when not (@position = left) and not (@position = top) {
+  &:after {
+    display: none;
+  }
+}
+
+// For left and top
+.hairline-remove(@position) when not (@position = right) and not (@position = bottom) {
+  &:before {
+    display: none;
+  }
+}
+
+// For right and bottom
+.hairline-color(@position, @color) when not (@position = left) and not (@position = top) {
+  &:after {
+    background-color: @color;
+  }
+}
+
+// For left and top
+.hairline-color(@position, @color) when not (@position = right) and not (@position = bottom) {
+  &:before {
+    background-color: @color;
+  }
+}
+
+// Encoded SVG Background
+.encoded-svg-background(@svg) {
+  @url: `encodeURIComponent(@{svg})`;
+  background-image: url("data:image/svg+xml;charset=utf-8,@{url}");
+}
+
+// Backdrop Blur
+.backdrop-blur(@blur) {
+  -webkit-backdrop-filter: blur(@blur);
+  backdrop-filter: blur(@blur);
+}
+
+// Preserve3D
+.preserve3d() {
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+// No Scrollbar
+.no-scrollbar() {
+  &::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    -webkit-appearance: none;
+    opacity: 0 !important;
+  }
+}
+
+// 多行文字截断
+.line-clamp(@lines, @line-height: 1.3em) {
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: @lines; // number of lines to show
+  overflow: hidden;
+  line-height: @line-height;
+  max-height: @line-height * @lines;
+}
+
+// 强制换行
+.break-all() {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+.work-ellipsis() {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.disabled() {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+// Sizing shortcuts
+.size(@width; @height) {
+  width: @width;
+  height: @height;
+}
+
+.square(@size) {
+  .size(@size; @size);
+}
+
+// Text Size Adjust
+// /* chrome 下字体过小的问题 */  -webkit-text-size-adjust: none;
+.text-size-adjust(@text-size-adjust-value: none) {
+  text-size-adjust: @text-size-adjust-value;
+  -webkit-text-size-adjust: @text-size-adjust-value;
+  -ms-text-size-adjust: @text-size-adjust-value;
+  -moz-text-size-adjust: @text-size-adjust-value;
+}
+
+.box-flex(@fw) {
+  -webkit-box-flex: @fw;
+  -moz-box-flex: @fw;
+  -webkit-flex: @fw;
+  -ms-flex: @fw;
+  flex: @fw;
+}
+
+.boxsizing() {
+  box-sizing: border-box;
+}
+
+// emoji
+.emoji-nums(@n, @i: 0) when (@i =< @n) {
+  .face.icon-@{i} {
+    background-position: 50% -(@i * 32px);
+  }
+  .emoji-nums(@n, (@i + 1));
+}
+
+.emoji-nums-smaller(@n, @i: 0) when (@i =< @n) {
+  .face.smaller.icon-@{i} {
+    background-position: 50% -(@i * 22px);
+  }
+  .emoji-nums-smaller(@n, (@i + 1));
+}
+
+//background
+.bg-color(@color) {
+  background-color: @color;
+}
+
+.dropdown() {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-left: solid 1px @colorGray;
+  border-top: solid 1px @colorGray;
+  -webkit-transform: rotate(-135deg);
+  transform: rotate(-135deg);
+  right: 20px;
+  top: 16px;
+}
