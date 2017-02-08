@@ -21,15 +21,6 @@ if (__PRODUCTION__) {
 }
 
 module.exports = {
-    {{#lint}}
-    preLoaders: [{
-        test: /\.(js|vue)$/,
-        loader: 'eslint',
-        include: [dirVars.srcDir],
-        exclude: /node_modules/,
-    }],
-    {{/lint}}
-
     loaders: [
         {
             test: /\.css$/,

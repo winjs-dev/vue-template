@@ -7,12 +7,13 @@
 
 /* name module */
 
-import Vue from 'vue'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
-import Router from 'vue-router'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+import Vue from 'vue';
+import Router from 'vue-router';
 
-Vue.use(Router){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+Vue.use(Router);
 
-import Hello from 'components/Hello'{{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+//component
+import Hello from 'components/Hello';
 
 export default new Router({
   mode: 'hash',
@@ -20,7 +21,7 @@ export default new Router({
     {
       path: '/',
       name: 'Hello',
-      component: Hello{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
-    }{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
-  ]{{#if_eq lintConfig "airbnb"}},{{/if_eq}}
-}){{#if_eq lintConfig "airbnb"}};{{/if_eq}}
+      component: Hello,
+    }
+  ],
+});

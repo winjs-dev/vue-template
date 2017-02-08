@@ -9,22 +9,18 @@
     "test": "set TEST=1 && npm run build:production",
     "dev": "node npm-scripts/clean-dev.js && set DEV=1 && webpack --config build/webpack/development.js --progress --watch",
     "build:production": "node npm-scripts/clean-build.js && webpack --config build/webpack/production.js --progress --bail",
-    "dll": "node npm-scripts/clean-dll.js && webpack --config build/webpack/dll.js --progress --colors"{{#lint}},
-    "lint": "eslint --ext .js,.vue src{{#unit}} test/unit/specs{{/unit}}{{#e2e}} test/e2e/specs{{/e2e}}"{{/lint}}
+    "dll": "node npm-scripts/clean-dll.js && webpack --config build/webpack/dll.js --progress --colors"
   },
   "dependencies": {
     "fastclick": "^1.0.6",
     "lib-flexible": "^0.3.2",
-    "vue": "^2.1.10"{{#router}},
-    "vue-router": "^2.2.0"{{/router}}
+    "vue": "^2.1.10",
+    "vue-router": "^2.2.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",
     "babel-core": "^6.22.1",
     "babel-helper-vue-jsx-merge-props": "^2.0.1",
-    {{#lint}}
-    "babel-eslint": "^7.1.1",
-    {{/lint}}
     "babel-loader": "^6.2.10",
     "babel-plugin-transform-runtime": "^6.22.0",
     "babel-plugin-transform-vue-jsx": "^3.1.0",
@@ -37,23 +33,6 @@
     "compression-webpack-plugin": "^0.3.2",
     "copy-webpack-plugin": "^1.1.1",
     "css-loader": "^0.26.1",
-    {{#lint}}
-    "eslint": "^3.14.1",
-    "eslint-friendly-formatter": "^2.0.7",
-    "eslint-loader": "^1.6.1",
-    "eslint-plugin-html": "^2.0.0",
-    {{#if_eq lintConfig "standard"}}
-    "eslint-config-standard": "^6.2.1",
-    "eslint-plugin-promise": "^3.4.0",
-    "eslint-plugin-standard": "^2.0.1",
-    {{/if_eq}}
-    {{#if_eq lintConfig "airbnb"}}
-    "eslint-config-airbnb-base": "^11.0.1",
-    "eslint-import-resolver-webpack": "^0.8.1",
-    "eslint-plugin-import": "^2.2.0",
-    {{/if_eq}}
-    {{/lint}}
-
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.10.0",
     "friendly-errors-webpack-plugin": "^1.1.3",
