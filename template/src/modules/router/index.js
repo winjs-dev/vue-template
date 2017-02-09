@@ -13,7 +13,7 @@ import Router from 'vue-router';
 Vue.use(Router);
 
 //component
-import Hello from 'components/Hello';
+import Hello from '../components/Hello';
 
 export default new Router({
   mode: 'hash',
@@ -21,7 +21,7 @@ export default new Router({
     {
       path: '/',
       name: 'Hello',
-      component: Hello,
+      component: Hello
     }
   ],
 });

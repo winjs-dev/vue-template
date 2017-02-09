@@ -37,7 +37,7 @@ pluginsConfig.push(
     }),
 
     new HtmlWebpackPlugin({
-        template: 'index.html',
+        template: dirVars.srcDir + '/index.html',
         filename: 'index.html',
         minify: {
             removeComments: true, //移除HTML中的注释

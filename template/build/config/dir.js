@@ -20,6 +20,7 @@ moduleExports.assetsDir = path.resolve(moduleExports.srcDir, 'assets');
 moduleExports.dllDir = path.resolve(moduleExports.assetsDir, 'dll'); // 存放由各种不常改变的js/css打包而来的dll
 moduleExports.assetsJsDir = path.resolve(moduleExports.assetsDir, 'js');
 moduleExports.assetsLessDir = path.resolve(moduleExports.assetsDir, 'less');
+moduleExports.modulesDir = path.resolve(moduleExports.srcDir, 'modules');
 
 // 线上目录
 moduleExports.distDir = path.resolve(moduleExports.staticRootDir, 'dist');

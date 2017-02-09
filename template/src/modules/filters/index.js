@@ -8,8 +8,6 @@
 /* name module */
 
 import {formatDate} from '../utils/func';
-import currencyData from '../../assets/js/currency_data';
-
 
 /**
  * [formateTime description]
@@ -85,20 +83,6 @@ export function addChineseUnit() {
       return number;
     }
   }();
-}
-
-export function formatCurrency(code) {
-  var symbol = '';
-
-  currencyData.forEach(function (element, index) {
-
-    if (element.code == code) {
-      symbol = element.symbol;
-    }
-  });
-
-
-  return symbol;
 }
 
 export function formatSize(size) {

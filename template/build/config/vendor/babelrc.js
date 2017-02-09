@@ -8,6 +8,9 @@
 /* name module */
 
 module.exports = {
-    "presets": ['es2015', 'stage-0'],
+    "presets": [
+      ['es2015', { "modules": false }],
+      "stage-2"
+    ],
     "plugins": ['transform-runtime', 'transform-vue-jsx']
 };

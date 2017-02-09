@@ -6,7 +6,7 @@
  */
 
 /* name module */
-
+import { getSessionStorageItem } from '../utils/func';
 import axios from 'axios';
 
 /**
@@ -19,16 +19,18 @@ import axios from 'axios';
  * @param headers
  * @returns {Promise<R>|Promise.<T>|*}
  */
-export default function fetch(url, {method = 'post', data = {}, timeout = 1000, headers = {}}) {
+export default function fetch(url, {method = 'post', data = {}, timeout = 3000, headers = {}}) {
 
-  let baseUrl = g_config.home;
+  let baseUrl = LOCAL_CONFIG.API_HOME;
 
   // 固定的参数
   Object.assign(data, {
     access_token: getSessionStorageItem('access_token')
   });
 
-  // 全局请求及响应拦截器
+  /**
+   *   全局请求及响应拦截器
+   */
   // Add a request interceptor
   axios.interceptors.request.use(function (config) {
     // Do something before request is sent

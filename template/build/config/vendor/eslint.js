@@ -1,5 +1,5 @@
-var path = require('path');
-var dirVars = require('../dir.js');
+const path = require('path');
+const dirVars = require('../dir.js');
 
 module.exports = {
   configFile: path.resolve(dirVars.staticRootDir, './.eslintrc'),

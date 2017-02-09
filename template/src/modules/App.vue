@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="pages">
-      <img src="./assets/logo.png">
+      <img src="../assets/images/logo.png">
       <transition name="fade" mode="out-in">
         <router-view></router-view>
       </transition>
@@ -10,7 +10,7 @@
 </template>
 
 <style lang="less" rel="stylesheet/less">
-  @import 'assets/less/app.less';
+  @import '../assets/less/app.less';
 
   #app {
     width: 100%;

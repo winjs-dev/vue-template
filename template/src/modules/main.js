@@ -3,6 +3,7 @@ import lang from './lang/zh-cn';
 import Vue from 'vue';
 import App from './App';
 import router from './router';
+import * as filters from './filters';
 import fastClick from 'fastclick';
 
 window.i18n = lang;
@@ -23,8 +24,7 @@ router.beforeEach((to, from, next) => {
   next();
 });
 
-new Vue({
-  el: '#app',
+const app = new Vue({
   router: router,
   render: h => h(App)
-});
+}).$mount('#app');

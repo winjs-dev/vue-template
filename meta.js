@@ -4,7 +4,6 @@ module.exports = {
       if (v1 || v2) {
         return options.fn(this);
       }
-
       return options.inverse(this);
     }
   },

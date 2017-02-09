@@ -6,8 +6,8 @@
  */
 
 /* name module */
-var dir = require('./dir');
+const dirVars = require('./dir');
 
 module.exports = {
-    app: dir.modulesDir + '/main.js'
+    app: dirVars.modulesDir + '/main.js'
 };

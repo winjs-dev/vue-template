@@ -24,7 +24,7 @@ pluginsConfig.push(
     new ExtractTextPlugin('[name].css'),
 
     new HtmlWebpackPlugin({
-        template: 'index.html',
+        template: dirVars.srcDir + '/index.html',
         filename: 'index.html',
         inject: 'body',
     }),

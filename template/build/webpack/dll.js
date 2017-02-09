@@ -19,6 +19,7 @@ const vendors = [
     'vue',
     'vue-router',
     'lib-flexible',
+    'normalize.css',
     'fastclick'
 ];
 

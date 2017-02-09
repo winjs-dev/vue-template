@@ -1,4 +1,3 @@
-
 /**
  *
  * @authors liwb (you@example.org)
@@ -8,12 +7,17 @@
 
 /* name module */
 
+const path = require('path');
+
 module.exports = {
-    entry: require('../config/entry'),
-    module: require('../config/module'),
-    resolve: require('../config/resolve'),
-    postcss: require('../config/vendor/postcss'),
-    vue: require('../config/vendor/vue.config'),
-    babel: require('../config/vendor/babelrc'),
-    output: require('../config/output')
+  entry: require('../config/entry'),
+  resolve: require('../config/resolve'),
+  resolveLoader: {
+    fallback: [path.join(__dirname, '../node_modules')]
+  },
+  module: require('../config/module'),
+  postcss: require('../config/vendor/postcss'),
+  vue: require('../config/vendor/vue.config'),
+  babel: require('../config/vendor/babelrc'),
+  output: require('../config/output')
 };
