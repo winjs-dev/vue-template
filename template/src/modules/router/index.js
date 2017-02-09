@@ -13,15 +13,15 @@ import Router from 'vue-router';
 Vue.use(Router);
 
 //component
-import Hello from '../views/Hello';
+import hello from '../views/hello';
 
 export default new Router({
   mode: 'hash',
   routes: [
     {
       path: '/',
-      name: 'Hello',
-      component: Hello
+      name: 'hello',
+      component: hello
     }
   ]
 });
