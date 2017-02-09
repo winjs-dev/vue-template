@@ -12,7 +12,7 @@ const dirVars = require('./dir');
 
 const __PRODUCTION__ = process.env.PRODUCTION;
 
-const lessLoader;
+let lessLoader;
 
 if (__PRODUCTION__) {
     lessLoader = ExtractTextPlugin.extract('css?minimize&-autoprefixer!postcss!less');
