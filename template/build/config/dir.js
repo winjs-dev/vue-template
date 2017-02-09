@@ -12,7 +12,7 @@ const moduleExports = {};
 
 //  构建配置
 moduleExports.staticRootDir = path.resolve(__dirname, '../../'); // 项目根目录
-moduleExports.nodemodulesDir = path.resolve(moduleExports.staticRootDir, 'node_modules');
+moduleExports.nodeModueDir = path.resolve(moduleExports.staticRootDir, 'node_modules');
 
 // 项目相关目录
 moduleExports.srcDir = path.resolve(moduleExports.staticRootDir, 'src');

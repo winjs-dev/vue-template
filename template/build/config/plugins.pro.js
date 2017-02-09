@@ -29,6 +29,9 @@ pluginsConfig.push(
     exclude: /node_module\/\.min\.js$/,
     workers: os.cpus().length,
     mangle: true,
+    output: {
+      comments: false,
+    },
     compressor: {
       warnings: false,
       drop_console: true,
