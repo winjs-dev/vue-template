@@ -5,6 +5,9 @@
   "author": "{{ author }}",
   "private": true,
   "scripts": {
+	"clean:dist": "rimraf dist",
+    "clean:dev": "rimraf dev",
+    "clean:dll": "rimraf src/assets/dll",
     "build": "set PRODUCTION=1 && npm run build:production",
     "test": "set TEST=1 && npm run build:production",
     "dev": "node npm-scripts/clean-dev.js && set DEV=1 && webpack --config build/webpack/development.js --progress --watch",

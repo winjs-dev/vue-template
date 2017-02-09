@@ -7,7 +7,7 @@
 
 /* name module */
 
-var webpackConfig = require('./_base');
+const webpackConfig = require('./_base');
 
 webpackConfig.plugins = require('../config/plugins.dev');
 

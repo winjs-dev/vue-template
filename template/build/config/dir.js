@@ -7,8 +7,8 @@
 
 /* name module */
 
-var path = require('path');
-var moduleExports = {};
+const path = require('path');
+const moduleExports = {};
 
 //  构建配置
 moduleExports.staticRootDir = path.resolve(__dirname, '../../'); // 项目根目录

@@ -8,21 +8,18 @@
 /* name module */
 
 /* name module */
-var utils = require('../utils');
-var pxtorem = require('postcss-pxtorem');
-var __PRODUCTION__ = process.env.PRODUCTION;
-var __TEST__ = process.env.TEST;
-var __UAT__ = process.env.UAT;
+const utils = require('../utils');
+const pxtorem = require('postcss-pxtorem');
+const __PRODUCTION__ = process.env.PRODUCTION;
 
-var proEnv = (__PRODUCTION__ || __UAT__ || __TEST__);
-var cssSourceMapDev = (!proEnv && false);
-var cssSourceMapProd = (proEnv && true);
-var useCssSourceMap = cssSourceMapDev || cssSourceMapProd;
+const cssSourceMapDev = (!__PRODUCTION__ && false);
+const cssSourceMapProd = (__PRODUCTION__ && true);
+const useCssSourceMap = cssSourceMapDev || cssSourceMapProd;
 
 module.exports = {
     loaders: utils.cssLoaders({
         // sourceMap: useCssSourceMap,
-        extract: proEnv ? true : false
+        extract: __PRODUCTION__ ? true : false
     }),
     postcss: [pxtorem({
         rootValue: 37.5,
