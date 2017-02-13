@@ -19,7 +19,7 @@ import axios from 'axios';
  * @param headers
  * @returns {Promise<R>|Promise.<T>|*}
  */
-export default function fetch(url, {method = 'post', data = {}, timeout = 3000, headers = {}}) {
+export default function Axios(url, {method = 'post', data = {}, timeout = 3000, headers = {}}) {
 
   let baseUrl = LOCAL_CONFIG.API_HOME;
 

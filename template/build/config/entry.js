@@ -9,5 +9,6 @@
 const dirVars = require('./dir');
 
 module.exports = {
-    app: dirVars.modulesDir + '/main.js'
+  app: dirVars.modulesDir + '/main.js',
+  common: ['func', 'fetch', 'lang', 'config']
 };

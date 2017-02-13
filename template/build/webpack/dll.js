@@ -13,6 +13,7 @@ const os = require('os');
 const HappyPack = require('happypack');
 const happyThreadPool = HappyPack.ThreadPool({size: os.cpus().length});
 const UglifyJsParallelPlugin = require('webpack-uglify-parallel');
+const configuration = require('../configuration');
 const dirVars = require('../config/dir'); // 与业务代码共用同一份路径的配置表
 
 // 需要dll打包进来的文件
@@ -25,7 +26,7 @@ const vendors = [
   'fastclick'
 ];
 
-module.exports = {
+const dll = {
   entry: {
     /*
      指定需要打包的js模块
@@ -79,3 +80,23 @@ module.exports = {
   module: require('../config/module'), // 沿用业务代码的module配置
   resolve: require('../config/resolve'), // 沿用业务代码的resolve配置
 };
+
+if (configuration.build.productionGzip) {
+  var CompressionWebpackPlugin = require('compression-webpack-plugin');
+
+  dll.plugins.push(
+    new CompressionWebpackPlugin({
+      asset: '[path].gz[query]',
+      algorithm: 'gzip',
+      test: new RegExp(
+        '\\.(' +
+        configuration.build.productionGzipExtensions.join('|') +
+        ')$'
+      ),
+      threshold: 10240,
+      minRatio: 0.8
+    })
+  );
+}
+
+module.exports = dll;

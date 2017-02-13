@@ -22,7 +22,11 @@ module.exports = {
     'vue$': 'vue/dist/vue',
     'axios': 'axios/dist/axios.min',
 
-    // css
+    // 项目公用
+    'func': path.resolve(dirVars.modulesDir, 'utils/func'),
+    'fetch': path.resolve(dirVars.modulesDir, 'utils/fetch'),
+    'lang': path.resolve(dirVars.modulesDir, 'lang/zh-cn'),
+    'config': path.resolve(dirVars.modulesDir, 'config'),
 
   },
 
