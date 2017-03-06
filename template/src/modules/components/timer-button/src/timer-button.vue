@@ -7,7 +7,7 @@
     name: 'timer-button',
     data() {
       return {
-        timer: 0
+        time: 0
       }
     },
     props: {
