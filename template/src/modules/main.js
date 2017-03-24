@@ -5,7 +5,6 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import * as filters from './filters';
-import fastClick from 'fastclick';
 
 window.i18n = lang;
 window.CT = config;
@@ -15,12 +14,6 @@ window.CT = config;
 Object.keys(filters).forEach((key) => {
   Vue.filter(key, filters[key]);
 });
-
-if ('addEventListener' in document) {
-  document.addEventListener('DOMContentLoaded', function () {
-    fastClick.attach(document.body);
-  }, false);
-}
 
 router.beforeEach((to, from, next) => {
   next();

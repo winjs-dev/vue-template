@@ -19,5 +19,6 @@ module.exports = {
   postcss: require('../config/vendor/postcss'),
   vue: require('../config/vendor/vue.config'),
   babel: require('../config/vendor/babelrc'),
+  // eslint: require('../config/vendor/eslint'),
   output: require('../config/output')
 };
