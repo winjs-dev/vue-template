@@ -7,7 +7,6 @@
 
 /* name module */
 
-const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
@@ -16,10 +15,6 @@ const dirVars = require('./dir');
 const configuration = require('../configuration');
 
 pluginsConfig.push(
-
-    new webpack.DefinePlugin({
-        __DEV__: JSON.stringify(JSON.parse(process.env.DEV || 'true'))
-    }),
 
     new ExtractTextPlugin('[name].css'),
 

@@ -17,9 +17,6 @@ const configuration = require('../configuration');
 const dirVars = require('./dir');
 
 pluginsConfig.push(
-  new webpack.DefinePlugin({
-    __PRODUCTION__: JSON.stringify(JSON.parse(process.env.PRODUCTION || 'false')),
-  }),
 
   new ExtractTextPlugin('[name].[hash].min.css', {
     allChunks: true

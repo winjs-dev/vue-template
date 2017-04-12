@@ -51,3 +51,8 @@ exports.styleLoaders = function (options) {
   }
   return output;
 }
+
+// is production
+exports.isProduction = function () {
+  return process.env.NODE_ENV === 'production';
+}

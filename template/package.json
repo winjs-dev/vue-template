@@ -6,16 +6,13 @@
   "private": true,
   "scripts": {
 	"clean:dist": "rimraf dist",
-    "clean:dev": "rimraf dev",
-    "clean:dll": "rimraf src/assets/dll",
-    "build": "set PRODUCTION=1 && npm run build:production",
-    "test": "set TEST=1 && npm run build:production",
-    "dev": "node npm-scripts/clean-dev.js && set DEV=1 && webpack --config build/webpack/development.js --progress --watch",
-    "build:production": "node npm-scripts/clean-build.js && webpack --config build/webpack/production.js --progress --bail",
+    "dev": "node npm-scripts/clean-dev.js && cross-env NODE_ENV=dev webpack --config build/webpack/development.js --progress --watch",
+    "build": "node npm-scripts/clean-build.js && cross-env NODE_ENV=production webpack --config build/webpack/production.js --progress --bail",
     "dll": "node npm-scripts/clean-dll.js && webpack --config build/webpack/dll.js --progress --colors"
   },
   "dependencies": {
     "axios": "^0.15.3",
+    "cross-env": "^4.0.0",
     "fastclick": "^1.0.6",
     "lib-flexible": "^0.3.2",
     "normalize.css": "^5.0.0",
