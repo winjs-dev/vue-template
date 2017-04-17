@@ -10,7 +10,7 @@
 /* name module */
 const utils = require('../utils');
 const pxtorem = require('postcss-pxtorem');
-const __PRODUCTION__ = process.env.PRODUCTION;
+const __PRODUCTION__ = utils.isProduction();
 
 const cssSourceMapDev = (!__PRODUCTION__ && false);
 const cssSourceMapProd = (__PRODUCTION__ && true);
