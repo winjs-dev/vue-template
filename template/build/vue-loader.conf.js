@@ -1,20 +1,7 @@
-/**
- *
- * @authors liwb (you@example.org)
- * @date    2016/12/1 10:14
- * @version $ IIFE
- */
-
-/* name module */
-
-/* name module */
-const utils = require('../utils');
-const pxtorem = require('postcss-pxtorem');
-const __PRODUCTION__ = utils.isProduction();
-
-const cssSourceMapDev = (!__PRODUCTION__ && false);
-const cssSourceMapProd = (__PRODUCTION__ && true);
-const useCssSourceMap = cssSourceMapDev || cssSourceMapProd;
+var utils = require('./utils')
+var config = require('./config')
+var isProduction = utils.isProduction()
+var pxtorem = require('postcss-pxtorem')
 
 module.exports = {
   // 解决把图片提前 require 传给一个变量再传给组件
@@ -23,10 +10,6 @@ module.exports = {
   },
   // 为了去掉元素间的空格
   preserveWhitespace: false,
-  loaders: utils.cssLoaders({
-    // sourceMap: useCssSourceMap,
-    extract: __PRODUCTION__ ? true : false
-  }),
   postcss: [pxtorem({
     rootValue: 37.5,
     unitPrecision: 5,
@@ -39,5 +22,11 @@ module.exports = {
   autoprefixer: {
     browsers: ["Android >= 2.3", "iOS >= 4"], //, "ChromeAndroid > 1%"
     cascade: false // 不美化输出 css
-  }
-};
+  },
+  loaders: utils.cssLoaders({
+    sourceMap: isProduction
+      ? config.build.productionSourceMap
+      : config.dev.cssSourceMap,
+    extract: isProduction
+  })
+}

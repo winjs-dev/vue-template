@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <h1></h1>
-    <h2>Essential Links12345</h2>
+    <h2>Essential Links1234</h2>
     <ul>
       <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
       <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
@@ -31,9 +31,10 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="less" rel="stylesheet/less">
+<style scoped  lang="less" rel="stylesheet/less">
   h1, h2 {
     font-weight: normal;
+    font-size: 35px;
   }
 
   ul {
@@ -48,5 +49,6 @@
 
   a {
     color: #42b983;
+    font-size: 24px;
   }
 </style>

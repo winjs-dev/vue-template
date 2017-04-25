@@ -1,6 +1,6 @@
-# {{ name }}
+# vue-test
 
-> {{ description }}
+> A Vue.js project
 
 ## Build Setup
 

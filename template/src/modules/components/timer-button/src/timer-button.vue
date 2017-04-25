@@ -1,5 +1,5 @@
 <template>
-  <button type="button" v-on:click="run" :disabled="disabled || time > 0">{{ text }}</button>
+  <button type="button" v-on:click="run" :disabled="disabled || time > 0"></button>
 </template>
 
 <script>
