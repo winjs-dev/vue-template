@@ -72,17 +72,11 @@ var base = {
         loader: 'babel-loader',
         options: {
           presets: [
-            ['env', { 'modules': false }],
+            'es2015',
             'stage-2'
           ],
           plugins: ['transform-runtime'],
-          comments: false,
-          env: {
-            test: {
-              presets: ['env', 'stage-2'],
-              plugins: [ 'istanbul' ]
-            }
-          }
+          comments: false
         }
       }],
       threadPool: happyThreadPool,
