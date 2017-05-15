@@ -38,6 +38,7 @@ module.exports = {
     src: path.resolve(__dirname, '../../', 'src'),
     assets: path.resolve(__dirname, '../../src', 'assets'),
     dll: path.resolve(__dirname, '../../src/assets', 'dll'),
-    modules: path.resolve(__dirname, '../../src', 'modules')
+    modules: path.resolve(__dirname, '../../src', 'modules'),
+    nodeModules: path.resolve(__dirname, '../../', 'node_modules'),
   }
 }
