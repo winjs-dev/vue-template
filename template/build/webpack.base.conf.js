@@ -9,10 +9,7 @@ var vueLoaderConfig = require('./vue-loader.conf')
 var base = {
   output: {
     path: config.build.assetsRoot,
-    filename: '[name].js',
-    publicPath: utils.isProduction()
-      ? config.build.assetsPublicPath
-      : config.dev.assetsPublicPath
+    filename: '[name].js'
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
