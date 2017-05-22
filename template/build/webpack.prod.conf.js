@@ -37,7 +37,8 @@ var webpackConfig = merge(baseWebpackConfig, {
     }),
     // extract css into its own file
     new ExtractTextPlugin({
-      filename: '[name].[contenthash].css'
+      filename: '[name].[contenthash].css',
+      allChunks: true
     }),
     // Compress extracted CSS. We are using this plugin so that possible
     // duplicated CSS from different components can be deduped.
@@ -65,8 +66,17 @@ var webpackConfig = merge(baseWebpackConfig, {
     }),
 
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'common'
+      name: 'common',
+      minChunks: Infinity
     }),
+    // 配置好Dll
+    new webpack.DllReferencePlugin({
+      context: config.directory.root, // 指定一个路径作为上下文环境，需要与DllPlugin的context参数保持一致，建议统一设置为项目根目录
+      manifest: require(config.directory.root + '/vendor-manifest.json'), // 指定manifest.json
+    }),
+
+    // 添加版本号
+    new webpack.BannerPlugin('current version: ' + new Date()),
     // copy custom static assets
     new CopyWebpackPlugin([
       {

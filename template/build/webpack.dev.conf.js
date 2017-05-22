@@ -31,6 +31,11 @@ module.exports = merge(baseWebpackConfig, {
       template: path.join(config.directory.root, 'src/index.html'),
       inject: true
     }),
+    // 配置好Dll
+    new webpack.DllReferencePlugin({
+      context: config.directory.root, // 指定一个路径作为上下文环境，需要与DllPlugin的context参数保持一致，建议统一设置为项目根目录
+      manifest: require(config.directory.root + '/vendor-manifest.json'), // 指定manifest.json
+    }),
     new FriendlyErrorsPlugin()
   ]
 })

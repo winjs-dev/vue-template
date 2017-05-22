@@ -1,6 +1,7 @@
 var path = require('path')
 var utils = require('./utils')
 var config = require('./config')
+var webpack = require('webpack')
 var os = require('os')
 var HappyPack = require('happypack')
 var happyThreadPool = HappyPack.ThreadPool({size: os.cpus().length})
@@ -9,7 +10,9 @@ var vueLoaderConfig = require('./vue-loader.conf')
 var base = {
   output: {
     path: config.build.assetsRoot,
-    filename: '[name].js'
+    filename: '[name].js',
+    libraryTarget: 'umd',
+    umdNamedDefine: true
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
