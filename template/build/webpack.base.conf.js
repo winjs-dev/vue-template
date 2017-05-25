@@ -18,8 +18,12 @@ var base = {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      '@': utils.resolve('src'),
       'axios': 'axios/dist/axios.min',
+      '@': utils.resolve('src'),
+      '@components': path.resolve(config.directory.modules, './components'),
+      '@mixins': path.resolve(config.directory.modules, './mixins'),
+      '@less': path.resolve(config.directory.assets, './less'),
+      '@js': path.resolve(config.directory.assets, './js'),
 
       // 项目公用
       'func': path.resolve(config.directory.modules, 'utils/func'),
@@ -68,23 +72,7 @@ var base = {
     //原有的 webpack 对 loader 的执行过程从单一进程的形式扩展多进程模式，原本的流程保持不变
     new HappyPack({
       id: 'happybabel',
-      loaders: [{
-        loader: 'babel-loader',
-        options: {
-          presets: [
-            ['env', { 'modules': false }],
-            'stage-0'
-          ],
-          plugins: ['transform-runtime'],
-          comments: false,
-          env: {
-            test: {
-              presets: ['env', 'stage-0'],
-              plugins: [ 'istanbul' ]
-            }
-          }
-        }
-      }],
+      loaders: ['babel-loader'],
       threadPool: happyThreadPool,
       cache: true,
       verbose: true
