@@ -6,8 +6,34 @@
  */
 
 /* name module */
-import { getSessionStorageItem } from '../utils/func';
+import Qs from 'qs';
 import axios from 'axios';
+
+/**
+ *   全局请求及响应拦截器
+ */
+// Add a request interceptor
+axios.interceptors.request.use(function (config) {
+  // Do something before request is sent
+  return config;
+}, function (error) {
+  // Do something with request error
+  return Promise.reject(error);
+});
+
+// Add a response interceptor
+axios.interceptors.response.use(function (response) {
+  // Do something with response data
+
+  if (response.data.error_no == '2000') { // 未登录已超时
+    return;
+  }
+
+  return response;
+}, function (error) {
+  // Do something with response error
+  return Promise.reject(error);
+});
 
 /**
  * 基于axios ajax请求
@@ -19,41 +45,13 @@ import axios from 'axios';
  * @param headers
  * @returns {Promise<R>|Promise.<T>|*}
  */
-export default function Axios(url, {method = 'post', data = {}, timeout = 3000, headers = {}}) {
+export default function _Axios(url, {method = 'post', data = {}, timeout = 3000, headers = {}}) {
 
   let baseUrl = LOCAL_CONFIG.API_HOME;
 
-  // 固定的参数
-  Object.assign(data, {
-    access_token: getSessionStorageItem('access_token')
-  });
-
-  /**
-   *   全局请求及响应拦截器
-   */
-  // Add a request interceptor
-  axios.interceptors.request.use(function (config) {
-    // Do something before request is sent
-    return config;
-  }, function (error) {
-    // Do something with request error
-    return Promise.reject(error);
-  });
-
-  // Add a response interceptor
-  axios.interceptors.response.use(function (response) {
-    // Do something with response data
-
-    if (response.data.error_no == '2000') { // 未登录已超时
-
-      return;
-    }
-
-    return response;
-  }, function (error) {
-    // Do something with response error
-    return Promise.reject(error);
-  });
+  if(url.indexOf('api.php') === -1) {
+    baseUrl = LOCAL_CONFIG.API_MUSIC;
+  }
 
   return axios({
     baseURL: baseUrl,
@@ -63,15 +61,16 @@ export default function Axios(url, {method = 'post', data = {}, timeout = 3000, 
     data: method === 'post' && data,
     timeout: timeout,
     headers: headers,
+    transformRequest: [function(data) {
+
+      // 防止出现两次post
+      return Qs.stringify(data);
+    }],
     transformResponse: [function (response) {
       // Do whatever you want to transform the data
-      var res = null;
-
       try {
         // statements
-        res = JSON.parse(response);
-
-        return res;
+        return JSON.parse(response);;
         // return [res.data][0] ? res.data : res;
       } catch (e) {
         // statements

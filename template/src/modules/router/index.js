@@ -12,16 +12,26 @@ import Router from 'vue-router';
 
 Vue.use(Router);
 
-//component
-import hello from '../views/hello';
+const routes = [
+  {
+    path: '/',
+    name: 'hello',
+    component(resolve) {
+      require(['@views/hello'], resolve);
+    },
+  },
+  {
+    path: '*', redirect: '/'
+  }
+];
 
-export default new Router({
+const router = new Router({
   mode: 'hash',
-  routes: [
-    {
-      path: '/',
-      name: 'hello',
-      component: hello
-    }
-  ]
+  routes
 });
+
+router.beforeEach((to, from, next) => {
+  next();
+});
+
+export default router;

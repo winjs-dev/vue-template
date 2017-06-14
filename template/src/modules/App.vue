@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <div class="pages">
-      <img src="../assets/images/logo.png">
       <transition name="fade" mode="out-in">
         <router-view></router-view>
       </transition>

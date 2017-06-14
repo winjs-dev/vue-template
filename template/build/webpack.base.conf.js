@@ -21,15 +21,19 @@ var base = {
       'axios': 'axios/dist/axios.min',
       '@': utils.resolve('src'),
       '@components': path.resolve(config.directory.modules, './components'),
+      '@views': path.resolve(config.directory.modules, './views'),
       '@mixins': path.resolve(config.directory.modules, './mixins'),
       '@less': path.resolve(config.directory.assets, './less'),
       '@js': path.resolve(config.directory.assets, './js'),
 
       // 项目公用
       'func': path.resolve(config.directory.modules, 'utils/func'),
-      'fetch': path.resolve(config.directory.modules, 'utils/fetch'),
+      'services': path.resolve(config.directory.modules, './services'),
       'lang': path.resolve(config.directory.modules, 'lang/zh-cn'),
       'config': path.resolve(config.directory.modules, 'config'),
+      'variable': path.resolve(config.directory.assets, './less/variable.less'),
+      'mixins': path.resolve(config.directory.assets, './less/mixins.less'),
+
     }
   },
   module: {

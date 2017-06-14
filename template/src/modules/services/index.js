@@ -6,8 +6,8 @@
  */
 
 /* name module */
-import Axios from '../utils/fetch';
+import _Axios from '../utils/_axios';
 
 export function login(data) {
-    return Axios('/usercenter/user/mobile_login', { data });
+    return _Axios('/usercenter/user/mobile_login', { data });
 }
