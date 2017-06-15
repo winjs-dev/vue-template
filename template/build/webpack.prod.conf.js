@@ -82,6 +82,10 @@ var webpackConfig = merge(baseWebpackConfig, {
       {
         from: config.directory.dll,
         to: 'assets/dll'
+      },
+      {
+        from: path.resolve(config.directory.src, 'config.js'),
+        to: 'config.js'
       }
     ])
   ]
