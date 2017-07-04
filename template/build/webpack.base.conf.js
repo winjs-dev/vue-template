@@ -32,7 +32,7 @@ var base = {
       'lang': path.resolve(config.directory.modules, 'lang/zh-cn'),
       'config': path.resolve(config.directory.modules, 'config'),
       'variable': path.resolve(config.directory.assets, './less/variable.less'),
-      'mixins': path.resolve(config.directory.assets, './less/mixins.less'),
+      'mixins': path.resolve(config.directory.nodeModules, './magicless/magicless.less'),
 
     }
   },
