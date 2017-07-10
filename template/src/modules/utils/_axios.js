@@ -45,13 +45,12 @@ axios.interceptors.response.use(function (response) {
  * @param headers
  * @returns {Promise<R>|Promise.<T>|*}
  */
-export default function _Axios(url, {method = 'post', data = {}, timeout = 3000, headers = {}}) {
+export default function _Axios(url, {
+  method = 'post', data = {}, timeout = 3000, headers = {
+  'Content-Type': 'application/x-www-form-urlencoded'}
+}) {
 
   let baseUrl = LOCAL_CONFIG.API_HOME;
-
-  if(url.indexOf('api.php') === -1) {
-    baseUrl = LOCAL_CONFIG.API_MUSIC;
-  }
 
   return axios({
     baseURL: baseUrl,
@@ -62,9 +61,21 @@ export default function _Axios(url, {method = 'post', data = {}, timeout = 3000,
     timeout: timeout,
     headers: headers,
     transformRequest: [function(data) {
+      let contentType = headers['Content-Type'];
 
-      // 防止出现两次post
+      if(contentType.indexOf('json') !== -1) { //  类型 application/json
+
+         // 服务器收到的raw body(原始数据) "{name:"jhon",sex:"man"}"（普通字符串）
+         return JSON.stringify(data);
+      } else if(contentType.indexOf('multipart') !== -1) { //类型 multipart/form-data;
+
+        return data;
+      }
+
+      // 类型 application/x-www-form-urlencoded
+      // 服务器收到的raw body(原始数据) name=homeway&key=nokey
       return Qs.stringify(data);
+
     }],
     transformResponse: [function (response) {
       // Do whatever you want to transform the data
