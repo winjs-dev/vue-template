@@ -21,5 +21,5 @@ npm run build --report
 ## Features
 
 - Equip with Vue.js, Vue-Router, Axios, ES6 & Babel
-- Build with Webpack 1.X & Vue Loader
+- Build with Webpack 2.X & Vue Loader
 - Stylesheets in Less

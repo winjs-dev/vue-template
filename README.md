@@ -12,4 +12,5 @@ $ cd my-project
 $ npm install
 $ npm run dll
 $ npm run dev
+$ npm run build
 ```
