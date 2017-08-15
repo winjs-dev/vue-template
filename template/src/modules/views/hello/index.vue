@@ -1,6 +1,6 @@
 <template>
-  <div class="hello">
-    <img src="/assets/images/logo.png">
+  <div class="page page-hello">
+    <img src="../../../assets/images/copyfiles/logo.png">
     <h1></h1>
     <h2>Essential Links12345</h2>
     <ul>

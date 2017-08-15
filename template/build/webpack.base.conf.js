@@ -1,7 +1,6 @@
 var path = require('path')
 var utils = require('./utils')
 var config = require('./config')
-var webpack = require('webpack')
 var os = require('os')
 var HappyPack = require('happypack')
 var happyThreadPool = HappyPack.ThreadPool({size: os.cpus().length})
@@ -56,6 +55,16 @@ var base = {
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
+        include: config.directory.src,
+        options: {
+          limit: 10000,
+          name: utils.assetsPath('[name].[hash:7].[ext]')
+        }
+      },
+      {
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+        loader: 'url-loader',
+        include: config.directory.src,
         options: {
           limit: 10000,
           name: utils.assetsPath('[name].[hash:7].[ext]')
@@ -64,6 +73,7 @@ var base = {
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',
+        include: config.directory.src,
         options: {
           limit: 10000,
           name: utils.assetsPath('[name].[hash:7].[ext]')

@@ -13,7 +13,7 @@ module.exports = {
   postcss: [pxtorem({
     rootValue: 37.5,
     unitPrecision: 5,
-    propList: ['font', 'font-size', 'line-height', 'letter-spacing', 'height', 'min-height', 'width', 'min-width'],
+    propList: ['height', 'min-height', 'width', 'min-width'],
     selectorBlackList: [],
     replace: true,
     mediaQuery: false,
