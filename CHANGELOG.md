@@ -2,6 +2,17 @@
 引入图片精灵，图片压缩（spritesmith，imagemin-webpack-plugin）等功能
 ---
 
+## 1.0.1
+
+`2017-08-16`
+
+- webpack 自动构建工具
+
+  - `New` 引入`webpack.ProgressPlugin`打包进度条，有关配置在template/build/webpack.prod.conf.js文件里（101行）
+
+  - `Improved` 添加生产环境中，去除js文件的日志信息功能，有关配置在template/build/webpack.prod.conf.js文件里（36行）
+
+
 ## 1.0.0
 
 `2017-08-15`

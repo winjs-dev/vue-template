@@ -32,7 +32,8 @@ var webpackConfig = merge(baseWebpackConfig, {
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
-        warnings: false
+        warnings: false,
+        drop_console: true
       },
       sourceMap: true
     }),
@@ -88,12 +89,16 @@ var webpackConfig = merge(baseWebpackConfig, {
     }),
     // 配置好Dll
     new webpack.DllReferencePlugin({
-      context: config.directory.root, // 指定一个路径作为上下文环境，需要与DllPlugin的context参数保持一致，建议统一设置为项目根目录
-      manifest: require(config.directory.root + '/vendor-manifest.json'), // 指定manifest.json
+      // 指定一个路径作为上下文环境，需要与DllPlugin的context参数保持一致，建议统一设置为项目根目录
+      context: config.directory.root,
+      // 指定manifest.json
+      manifest: require(config.directory.root + '/vendor-manifest.json'),
     }),
 
     // 添加版本号
     new webpack.BannerPlugin('current version: ' + new Date()),
+    // 进度条
+    new webpack.ProgressPlugin(),
     // copy custom static assets
     new CopyWebpackPlugin([
       {

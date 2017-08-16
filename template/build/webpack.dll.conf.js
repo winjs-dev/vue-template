@@ -49,7 +49,8 @@ var webpackConfig = merge(baseWebpackConfig, {
 
     new webpack.optimize.UglifyJsPlugin({
       compress: {
-        warnings: false
+        warnings: false,
+        drop_console: true
       },
       sourceMap: true
     }),
@@ -81,7 +82,9 @@ var webpackConfig = merge(baseWebpackConfig, {
       spritesmithOptions: {
         algorithm: 'top-down'
       }
-    })
+    }),
+    // 进度条
+    new webpack.ProgressPlugin()
   ]
 })
 

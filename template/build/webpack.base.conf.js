@@ -55,7 +55,7 @@ var base = {
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
-        include: config.directory.src,
+        include: [utils.resolve('src/assets'), utils.resolve('node_modules')],
         options: {
           limit: 10000,
           name: utils.assetsPath('[name].[hash:7].[ext]')
@@ -64,7 +64,7 @@ var base = {
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
         loader: 'url-loader',
-        include: config.directory.src,
+        include: [utils.resolve('src/assets'), utils.resolve('node_modules')],
         options: {
           limit: 10000,
           name: utils.assetsPath('[name].[hash:7].[ext]')
@@ -73,7 +73,7 @@ var base = {
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',
-        include: config.directory.src,
+        include: [utils.resolve('src/assets'), utils.resolve('node_modules')],
         options: {
           limit: 10000,
           name: utils.assetsPath('[name].[hash:7].[ext]')
