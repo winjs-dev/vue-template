@@ -25,7 +25,7 @@ axios.interceptors.request.use(function (config) {
 axios.interceptors.response.use(function (response) {
   // Do something with response data
 
-  if (response.data.error_no == '2000') { // 未登录已超时
+  if (String(response.data.error_no) === '2000') { // 未登录已超时
     return;
   }
 
@@ -47,10 +47,10 @@ axios.interceptors.response.use(function (response) {
  */
 export default function _Axios(url, {
   method = 'post', data = {}, timeout = 3000, headers = {
-  'Content-Type': 'application/x-www-form-urlencoded'}
+    'Content-Type': 'application/x-www-form-urlencoded'
+  }
 }) {
-
-  let baseUrl = LOCAL_CONFIG.API_HOME;
+  let baseUrl = window.LOCAL_CONFIG.API_HOME;
 
   return axios({
     baseURL: baseUrl,
@@ -60,28 +60,25 @@ export default function _Axios(url, {
     data: method === 'post' && data,
     timeout: timeout,
     headers: headers,
-    transformRequest: [function(data) {
+    transformRequest: [function (data) {
       let contentType = headers['Content-Type'];
-
-      if(contentType.indexOf('json') !== -1) { //  类型 application/json
-
-         // 服务器收到的raw body(原始数据) "{name:"jhon",sex:"man"}"（普通字符串）
-         return JSON.stringify(data);
-      } else if(contentType.indexOf('multipart') !== -1) { //类型 multipart/form-data;
-
+      if (contentType.indexOf('json') !== -1) { //  类型 application/json
+        // 服务器收到的raw body(原始数据) "{name:"jhon",sex:"man"}"（普通字符串）
+        return JSON.stringify(data);
+      } else if (contentType.indexOf('multipart') !== -1) { // 类型 multipart/form-data;
         return data;
       }
 
       // 类型 application/x-www-form-urlencoded
       // 服务器收到的raw body(原始数据) name=homeway&key=nokey
       return Qs.stringify(data);
-
     }],
     transformResponse: [function (response) {
       // Do whatever you want to transform the data
       try {
         // statements
-        return JSON.parse(response);;
+        return JSON.parse(response);
+
         // return [res.data][0] ? res.data : res;
       } catch (e) {
         // statements
@@ -89,7 +86,6 @@ export default function _Axios(url, {
       }
     }]
   }).catch(function (error) {
-
     if (error.response) {
       // The request was made, but the server responded with a status code
       // that falls out of the range of 2xx

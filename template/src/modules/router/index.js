@@ -18,7 +18,7 @@ const routes = [
     name: 'hello',
     component(resolve) {
       require(['@views/hello'], resolve);
-    },
+    }
   },
   {
     path: '*', redirect: '/'

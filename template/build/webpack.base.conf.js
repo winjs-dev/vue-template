@@ -17,7 +17,6 @@ var base = {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      'axios': 'axios/dist/axios.min',
       '@': utils.resolve('src'),
       '@components': path.resolve(config.directory.modules, './components'),
       '@views': path.resolve(config.directory.modules, './views'),
@@ -26,17 +25,25 @@ var base = {
       '@js': path.resolve(config.directory.assets, './js'),
 
       // 项目公用
-      'func': path.resolve(config.directory.modules, 'utils/func'),
+      'utils': path.resolve(config.directory.modules, 'utils/func'),
       'services': path.resolve(config.directory.modules, './services'),
       'lang': path.resolve(config.directory.modules, 'lang/zh-cn'),
       'config': path.resolve(config.directory.modules, 'config'),
       'variable': path.resolve(config.directory.assets, './less/variable.less'),
-      'mixins': path.resolve(config.directory.nodeModules, './magicless/magicless.less'),
-
+      'mixins': path.resolve(config.directory.nodeModules, './magicless/magicless.less')
     }
   },
   module: {
     rules: [
+      {
+        test: /\.(js|vue)$/,
+        loader: 'eslint-loader',
+        enforce: 'pre',
+        include: [utils.resolve('src/modules')],
+        options: {
+          formatter: require('eslint-friendly-formatter')
+        }
+      },
       {
         test: /\.vue$/,
         loader: 'vue-loader',
@@ -102,7 +109,7 @@ var base = {
   ]
 }
 
-if(process.env.NODE_ENV !== 'dll') {
+if (process.env.NODE_ENV !== 'dll') {
   base.entry = {
     app: config.directory.modules + '/main.js'
   }

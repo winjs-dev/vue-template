@@ -1,6 +1,18 @@
 # Change Log
 ---
 
+## 1.0.2
+ 
+`2017-09-04`
+ 
+- webpack 自动构建工具
+ 
+   - `New` 引入`eslint`javascript代码检测工具，新增命令`npm run lint`，详见`template/package.json`、`template/.eslintrc.js`
+ 
+- src
+ 
+   - `Changed` 将`template/src/modules/utils/_axios.js`转移到了`template/src/modules/services`目录下 
+   
 ## 1.0.1
 
 `2017-08-16`

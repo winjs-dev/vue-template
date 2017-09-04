@@ -1,4 +1,4 @@
-﻿/**
+/**
  *
  * @authors liwb (you@example.org)
  * @date    2016/10/24 17:33
@@ -20,23 +20,22 @@ export function getUnixTimeStamp(time) {
     time = time.substring(0, 19);
   }
 
-  var unix_time;
-  var pattern = /\-|\./g;
+  var unixTime;
+  var pattern = /-|\./g;
 
   if (pattern.test(time)) {
-    unix_time = time.replace(pattern, '/');
+    unixTime = time.replace(pattern, '/');
   } else {
     var y, m, d;
     y = time.slice(0, 4);
     m = time.slice(4, 6);
     d = time.slice(6, 8);
-    unix_time = y + '/' + m + '/' + d;
+    unixTime = y + '/' + m + '/' + d;
   }
 
-  result = Math.round(Date.parse(unix_time));
+  result = Math.round(Date.parse(unixTime));
 
   return result;
-
 }
 
 /** * 对Date的扩展，将 Date 转化为指定格式的String * 月(M)、日(d)、12小时(h)、24小时(H)、分(m)、秒(s)、周(E)、季度(q)
@@ -48,18 +47,17 @@ export function getUnixTimeStamp(time) {
  * (new Date()).pattern('yyyy-M-d h:m:s.S') ==> 2006-7-2 8:9:4.18
  */
 export function formatDate(date, fmt) {
-  date = date == undefined ? new Date() : date;
-  date = (typeof date == 'number' || typeof date == 'string') ? new Date(date) : date;
+  date = (typeof date === 'number' || typeof date === 'string') ? new Date(date) : new Date();
   fmt = fmt || 'yyyy-MM-dd HH:mm:ss';
   var o = {
-    'M+': date.getMonth() + 1, //月份
-    'd+': date.getDate(), //日
-    'h+': date.getHours() % 12 === 0 ? 12 : date.getHours() % 12, //小时
-    'H+': date.getHours(), //小时
-    'm+': date.getMinutes(), //分
-    's+': date.getSeconds(), //秒
-    'q+': Math.floor((date.getMonth() + 3) / 3), //季度
-    'S': date.getMilliseconds() //毫秒
+    'M+': date.getMonth() + 1, // 月份
+    'd+': date.getDate(), // 日
+    'h+': date.getHours() % 12 === 0 ? 12 : date.getHours() % 12, // 小时
+    'H+': date.getHours(), // 小时
+    'm+': date.getMinutes(), // 分
+    's+': date.getSeconds(), // 秒
+    'q+': Math.floor((date.getMonth() + 3) / 3), // 季度
+    'S': date.getMilliseconds() // 毫秒
   };
   var week = {
     '0': '\u65e5',
@@ -90,10 +88,10 @@ export function formatDate(date, fmt) {
 
 // 获取浏览器参数
 export function getUrlParam(name) { // 'null' 会返回string
-  var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)'); //构造一个含有目标参数的正则表达式对象
-  var r = window.location.search.substr(1).match(reg); //匹配目标参数
+  var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)'); // 构造一个含有目标参数的正则表达式对象
+  var r = window.location.search.substr(1).match(reg); // 匹配目标参数
   if (r !== null) return decodeURIComponent(r[2]);
-  return null; //返回参数值
+  return null; // 返回参数值
 }
 
 export function getHttpParams(name) {
@@ -102,20 +100,20 @@ export function getHttpParams(name) {
   return decodeURIComponent(!m ? '' : m[2]);
 }
 
-//sessionstorage操作
-export function setSessionStorageItem(item_key, item_value) {
-  isSeesionStorageNameSupported() && sessionStorage.setItem(item_key, item_value);
+// sessionstorage操作
+export function setSessionStorageItem(itemKey, itemValue) {
+  isSeesionStorageNameSupported() && sessionStorage.setItem(itemKey, itemValue);
 }
 
-export function getSessionStorageItem(item_key) {
+export function getSessionStorageItem(itemKey) {
   if (isSeesionStorageNameSupported()) {
-    return sessionStorage.getItem(item_key);
+    return sessionStorage.getItem(itemKey);
   }
 }
 
-export function removeSessionStorageItem(item_key) {
+export function removeSessionStorageItem(itemKey) {
   if (isSeesionStorageNameSupported()) {
-    return sessionStorage.removeItem(item_key);
+    return sessionStorage.removeItem(itemKey);
   }
 }
 
@@ -124,8 +122,8 @@ export function clearSessionStorage() {
 }
 
 function isSeesionStorageNameSupported() {
-  var win = window,
-    sessionStorageName = 'sessionStorage';
+  var win = window;
+  var sessionStorageName = 'sessionStorage';
 
   try {
     return (sessionStorageName in win && win[sessionStorageName]);
@@ -134,21 +132,20 @@ function isSeesionStorageNameSupported() {
   }
 }
 
-//localstore
-export function setLocalStorageItem(item_key, item_value) {
-
-  isLocalStorageNameSupported() && localStorage.setItem(item_key, item_value);
+// localstore
+export function setLocalStorageItem(itemKey, itemValue) {
+  isLocalStorageNameSupported() && localStorage.setItem(itemKey, itemValue);
 }
 
-export function getLocalStorageItem(item_key) {
+export function getLocalStorageItem(itemKey) {
   if (isLocalStorageNameSupported()) {
-    return localStorage.getItem(item_key);
+    return localStorage.getItem(itemKey);
   }
 }
 
-export function removeLocalStorageItem(item_key) {
+export function removeLocalStorageItem(itemKey) {
   if (isLocalStorageNameSupported()) {
-    return localStorage.removeItem(item_key);
+    return localStorage.removeItem(itemKey);
   }
 }
 
@@ -157,8 +154,8 @@ export function clearLoaclStorage() {
 }
 
 function isLocalStorageNameSupported() {
-  var win = window,
-    localStorageName = 'localStorage';
+  var win = window;
+  var localStorageName = 'localStorage';
 
   try {
     return (localStorageName in win && win[localStorageName]);
@@ -218,7 +215,7 @@ export function throttle(func, wait, options) {
 }
 
 export function callback(data, success, fail) {
-  if (data.error_no == '0') {
+  if (String(data.error_no) === '0') {
     (isFunction(success)) && success();
   } else {
     (isFunction(fail)) && fail();
@@ -231,7 +228,7 @@ export function isMobile(str) {
   return reg.test(str);
 }
 
-//5-25字符。包含英文、数字
+// 5-25字符。包含英文、数字
 export function isAccount(str) {
   var reg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{5,25}$/;
 
@@ -244,7 +241,7 @@ export function isPassword(str) {
   return reg.test(str);
 }
 
-//身份证号
+// 身份证号
 export function isCardId(str) {
   var reg = /^\d{6}(19|2\d)?\d{2}(0[1-9]|1[012])(0[1-9]|[12]\d|3[01])\d{3}(\d|X)?$/;
 
@@ -252,12 +249,11 @@ export function isCardId(str) {
 }
 
 export function imageFilter(type) {
-
   return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
 }
 
 export function loggedIn() {
-  return getLocalStorageItem('access_token') ? true : false;
+  return !!getLocalStorageItem('access_token');
 }
 
 function isFunction(fn) {
