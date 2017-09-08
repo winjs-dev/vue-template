@@ -1,6 +1,18 @@
 # Change Log
 ---
 
+## 1.0.3
+ 
+`2017-09-08`
+ 
+- webpack 自动构建工具
+ 
+   - `Changed` 引入`cloud-utils`工具类函数集合，替换工程里的`utils`
+ 
+- src
+ 
+   - `Changed` 修复组件`sendcode`异常 
+   
 ## 1.0.2
  
 `2017-09-04`

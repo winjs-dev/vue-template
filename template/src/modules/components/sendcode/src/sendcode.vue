@@ -1,15 +1,10 @@
 <template>
-  <w-button :disabled="isStart">{{text}}</w-button>
+  <button :disabled="isStart">{{text}}</button>
 </template>
 
 <script>
-  import WButton from '../../button';
-
   export default {
     name: 'send-code',
-    components: {
-      WButton
-    },
     data() {
       return {
         timer: null,

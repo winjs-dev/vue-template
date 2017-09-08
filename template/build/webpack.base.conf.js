@@ -25,7 +25,7 @@ var base = {
       '@js': path.resolve(config.directory.assets, './js'),
 
       // 项目公用
-      'utils': path.resolve(config.directory.modules, 'utils/func'),
+      'utils': path.resolve(config.directory.nodeModules, './cloud-utils/dist/cloud-utils.min'),
       'services': path.resolve(config.directory.modules, './services'),
       'lang': path.resolve(config.directory.modules, 'lang/zh-cn'),
       'config': path.resolve(config.directory.modules, 'config'),
