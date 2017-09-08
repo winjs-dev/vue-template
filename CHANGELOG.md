@@ -13,6 +13,8 @@
  
    - `Changed` 修复组件`sendcode`异常 
    
+   - `New` 引入`store.js`，详见`template/src/assets/js/store.js` 
+   
 ## 1.0.2
  
 `2017-09-04`
