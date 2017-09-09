@@ -6,7 +6,7 @@
  */
 
 /* name module */
-import _Axios from '../utils/_axios';
+import _Axios from './_axios';
 
 export function login(data) {
   return _Axios('/usercenter/user/mobile_login', {data});
