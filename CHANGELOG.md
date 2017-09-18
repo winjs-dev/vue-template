@@ -1,6 +1,14 @@
 # Change Log
 ---
 
+## 1.0.4
+ 
+`2017-09-18`
+ 
+- webpack 自动构建工具
+ 
+   - `Changed` 为dist目录下index.html引用的`config.js`添加hash值,去除缓存
+
 ## 1.0.3
  
 `2017-09-08`
