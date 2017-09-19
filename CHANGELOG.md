@@ -64,7 +64,7 @@
 
 - 项目src
 
-  - `New` 新增文件夹`copyfiles`和`sprites`至目录`assets/images`
+  - `New` 新增文件夹`copyfiles`和`sprites`至目录`assets/images`，**`copyfiles`目录下的文件并不会被webpack处理，它们会直接复制到最终的打包目录（默认是dist/assets/images/copyfiles），而其他的静态资源都会被webpack处理解析为模块依赖**
 
   - `New` 新增文件夹`widget`至目录`assets/less`，主要放置web组件的样式文件，如button.less
 
