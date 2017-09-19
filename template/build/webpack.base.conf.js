@@ -18,6 +18,7 @@ var base = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': utils.resolve('src'),
+      '@assets':path.resolve(config.directory.src, './assets'),
       '@components': path.resolve(config.directory.modules, './components'),
       '@views': path.resolve(config.directory.modules, './views'),
       '@mixins': path.resolve(config.directory.modules, './mixins'),
