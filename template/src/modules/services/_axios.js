@@ -10,7 +10,6 @@
 /* name module */
 import Qs from 'qs';
 import axios from 'axios';
-import config from 'config';
 import autoMatchBaseUrl from './autoMatchBaseUrl';
 
 // 添加一个请求拦截器 （于transformRequest之前处理）
@@ -90,7 +89,7 @@ axios.interceptors.response.use(function (response) {
 export default function _Axios(url, {
   method = 'post',
   timeout = 10000,
-  prefix = config.OPEN_PREFIX,
+  prefix = window.CT.OPEN_PREFIX,
   data = {
     'date': Date.now()
   },

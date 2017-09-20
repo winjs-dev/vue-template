@@ -9,9 +9,9 @@
 
 module.exports = {
   // openapi
-  OPEN_API: 'vipstu/v1/',
+  OPEN_PREFIX: 'vipstu/v1/',
   // 灰度升级
-  UPGRADE_API: 'upgrade/',
+  UPGRADE_PREFIX: 'upgrade/',
   // 流式服务，如上传图片路径
-  UPLOADING_API: 'fileOpenapi/'
+  UPLOADING_PREFIX: 'fileOpenapi/'
 };

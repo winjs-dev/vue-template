@@ -8,6 +8,10 @@
 /* name module */
 
 window.LOCAL_CONFIG = {
-    // 工作室服务及接口
-    API_HOME: 'https://fulldev.yjifs.com/'
+  // 工作室服务及接口
+  API_HOME: 'https://fulldev.yjifs.com/',
+  // 上传接口
+  API_UPLOAD: 'https://upload.yiifs.com/',
+  // hsair服务接口
+  API_HSAIR: 'http://hsair.com/'
 };

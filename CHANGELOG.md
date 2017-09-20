@@ -1,6 +1,19 @@
 # Change Log
 ---
 
+## 1.0.5
+ 
+`2017-09-20`
+ 
+- webpack 自动构建工具
+ 
+   - `Changed` 更新`compression-webpack-plugin`版本号，避免出现`node-gyp``node-pre-gyp`下载异常的问题
+   
+- src
+    
+   - `Changed` 更新`template/src/modules/config.js`及`template/src/config.js` 
+      
+   
 ## 1.0.4
  
 `2017-09-18`
