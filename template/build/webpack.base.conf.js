@@ -18,20 +18,19 @@ var base = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': utils.resolve('src'),
-      '@assets':path.resolve(config.directory.src, './assets'),
-      '@components': path.resolve(config.directory.modules, './components'),
-      '@views': path.resolve(config.directory.modules, './views'),
-      '@mixins': path.resolve(config.directory.modules, './mixins'),
-      '@less': path.resolve(config.directory.assets, './less'),
-      '@js': path.resolve(config.directory.assets, './js'),
+      '@assets': utils.resolve('src/assets'),
+      '@less': utils.resolve('src/assets/less'),
+      '@js': utils.resolve('src/assets/js'),
+      '@components': utils.resolve('src/modules/components'),
+      '@mixins': utils.resolve('src/modules/mixins'),
+      '@views': utils.resolve('src/modules/views'),
 
       // 项目公用
-      'utils': path.resolve(config.directory.nodeModules, './cloud-utils/dist/cloud-utils.min'),
-      'services': path.resolve(config.directory.modules, './services'),
-      'lang': path.resolve(config.directory.modules, 'lang/zh-cn'),
-      'config': path.resolve(config.directory.modules, 'config'),
-      'variable': path.resolve(config.directory.assets, './less/variable.less'),
-      'mixins': path.resolve(config.directory.nodeModules, './magicless/magicless.less')
+      'services': utils.resolve('src/modules/services'),
+      'lang': utils.resolve('src/modules/lang/zh-cn'),
+      'variable': utils.resolve('src/assets/less/variable.less'),
+      'utils': utils.resolve('node_modules/cloud-utils/dist/cloud-utils.min'),
+      'mixins': utils.resolve('node_modules/magicless/magicless.less')
     }
   },
   module: {
@@ -63,7 +62,7 @@ var base = {
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
-        include: [utils.resolve('src/assets'), utils.resolve('node_modules')],
+        include: [utils.resolve('src/assets'), utils.resolve('modules'), utils.resolve('node_modules')],
         options: {
           limit: 10000,
           name: utils.assetsPath('[name].[hash:7].[ext]')
@@ -72,7 +71,7 @@ var base = {
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
         loader: 'url-loader',
-        include: [utils.resolve('src/assets'), utils.resolve('node_modules')],
+        include: [utils.resolve('src/assets'), utils.resolve('modules'), utils.resolve('node_modules')],
         options: {
           limit: 10000,
           name: utils.assetsPath('[name].[hash:7].[ext]')
@@ -81,7 +80,7 @@ var base = {
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',
-        include: [utils.resolve('src/assets'), utils.resolve('node_modules')],
+        include: [utils.resolve('src/assets'), utils.resolve('modules'), utils.resolve('node_modules')],
         options: {
           limit: 10000,
           name: utils.assetsPath('[name].[hash:7].[ext]')
@@ -106,7 +105,7 @@ var base = {
       threadPool: happyThreadPool,
       cache: true,
       verbose: true
-    }),
+    })
   ]
 }
 
