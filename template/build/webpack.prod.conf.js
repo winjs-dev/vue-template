@@ -8,7 +8,6 @@ var CopyWebpackPlugin = require('copy-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
-var ImageminPlugin = require('imagemin-webpack-plugin').default
 
 var env = config.build.env
 
@@ -113,7 +112,14 @@ var webpackConfig = merge(baseWebpackConfig, {
         from: path.resolve(config.directory.assets, 'images/copyfiles'),
         to: 'assets/images/copyfiles'
       }
-    ]),
+    ])
+  ]
+})
+
+if (config.build.productionImagemin) {
+  var ImageminPlugin = require('imagemin-webpack-plugin').default
+
+  webpackConfig.plugins.push(
     // Make sure that the plugin is after any plugins that add images
     new ImageminPlugin({
       test: 'assets/**',
@@ -122,8 +128,8 @@ var webpackConfig = merge(baseWebpackConfig, {
         quality: '65-80'
       }
     })
-  ]
-})
+  )
+}
 
 if (config.build.productionGzip) {
   var CompressionWebpackPlugin = require('compression-webpack-plugin')
