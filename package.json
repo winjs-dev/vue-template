@@ -4,6 +4,7 @@
   "license": "MIT",
   "description": "A vue template.",
   "scripts": {
+    "release": "bash release.sh"
   },
   "devDependencies": {
     "cloud-cli": "^1.1.1"

@@ -9,7 +9,7 @@
 </template>
 
 <style lang="less" rel="stylesheet/less">
-  @import '../assets/less/app.less';
+  @import '~@assets/less/app.less';
 
   #app {
     width: 100%;

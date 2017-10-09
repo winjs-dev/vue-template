@@ -1,6 +1,20 @@
 # Change Log
 ---
 
+## 1.0.8
+ 
+`2017-10-09`
+ 
+- webpack 自动构建工具
+ 
+   - `Changed` css雪碧图做成配置项
+   
+- src
+    
+   - `Changed` 更新组件的写法，采用大驼峰或中划线`template/src/modules/components/SendCode`
+    
+   - `Changed` 增加路径别名在实战的使用说明demo`template/src/modules/views/hello/index.vue`
+
 ## 1.0.6
  
 `2017-09-21`

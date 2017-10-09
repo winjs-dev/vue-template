@@ -2,7 +2,7 @@
   <div class="page page-hello">
     <!-- 静态资源路径写法事例 -->
     <img src="~@assets/images/copyfiles/logo.png">
-    <p>{{msg}}</p>
+    <p v-text="msg"></p>
     <!-- 组件用法 -->
     <send-code class="button button-default" v-model="start" @click.native="handleSendCode"></send-code>
   </div>
