@@ -6,7 +6,9 @@ var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+{{#cssSprite}}
 var SpritesmithPlugin = require('webpack-spritesmith')
+{{/cssSprite}}
 
 // 需要dll打包进来的文件
 var vendors = [
@@ -66,6 +68,7 @@ var webpackConfig = merge(baseWebpackConfig, {
         safe: true
       }
     }),
+    {{#cssSprite}}
     // sprites图片精灵
     new SpritesmithPlugin({
       src: {
@@ -83,6 +86,7 @@ var webpackConfig = merge(baseWebpackConfig, {
         algorithm: 'top-down'
       }
     }),
+    {{/cssSprite}}
     // 进度条
     new webpack.ProgressPlugin()
   ]

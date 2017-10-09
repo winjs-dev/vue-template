@@ -73,8 +73,8 @@
     "webpack-bundle-analyzer": "^2.2.1",
     "webpack-dev-middleware": "^1.10.0",
     "webpack-hot-middleware": "^2.18.0",
-    "webpack-merge": "^4.1.0",
-    "webpack-spritesmith": "^0.3.3"
+    "webpack-merge": "^4.1.0"{{#cssSprite}},
+    "webpack-spritesmith": "^0.3.3"{{/cssSprite}}
   },
   "engines": {
     "node": ">= 4.0.0",

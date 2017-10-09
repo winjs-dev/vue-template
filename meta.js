@@ -22,7 +22,11 @@ module.exports = {
     "author": {
       "type": "string",
       "message": "Author"
-    }
+    },
+    "cssSprite": {
+      "type": "confirm",
+      "message": "Install webapck-spritesmith?"
+    },
   },
   "filters": {
 
