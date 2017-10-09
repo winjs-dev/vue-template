@@ -6,21 +6,24 @@
 
 <script>
   // 工具类
-  import { formatTime } from 'utils';
+  import {formatTime} from 'utils';
   // 组件
-  import MessageBox from '@components/messageBox';
+  import SendCode from '@components/SendCode';
   // 服务
-  import { login } from 'services';
+  import {login} from 'services';
 
   export default {
     data() {
       return {
         msg: 'Welcome to Your Vue.js App'
       }
+    },
+    components: {
+      'send-code': SendCode
     }
   }
 </script>
 
-<style scoped lang="less" rel="stylesheet/less">
+<style lang="less" rel="stylesheet/less">
   @import "./style.less";
 </style>
