@@ -1,5 +1,5 @@
 <template>
-  <button :disabled="isStart">{{text}}</button>
+  <button :disabled="isStart" v-text="text"></button>
 </template>
 
 <script>
