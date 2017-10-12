@@ -6,6 +6,7 @@ var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
 var CopyWebpackPlugin = require('copy-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+var HtmlCriticalPlugin = require('html-critical-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 
@@ -65,7 +66,23 @@ var webpackConfig = merge(baseWebpackConfig, {
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
       chunksSortMode: 'dependency'
     }),
-
+    // This is a webpack wrapper around Addy Osmani's critical library, which helps to inline minimum necessary CSS in HTML documents to prevent stylesheet loading from blocking the Critical Rendering Path.
+    // https://github.com/anthonygore/html-critical-webpack-plugin
+    new HtmlCriticalPlugin({
+      base: path.join(config.directory.root, 'dist/'),
+      src: 'index.html',
+      dest: 'index.html',
+      inline: true,
+      minify: true,
+      extract: true,
+      width: 375,
+      height: 565,
+      penthouse: {
+        blockJSRequests: false,
+      }
+    }),
+    // cache Module Identifiers
+    new webpack.HashedModuleIdsPlugin(),
     // split vendor js into its own file
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
@@ -93,7 +110,6 @@ var webpackConfig = merge(baseWebpackConfig, {
       // 指定manifest.json
       manifest: require(config.directory.root + '/vendor-manifest.json'),
     }),
-
     // 添加版本号
     new webpack.BannerPlugin('current version: ' + new Date()),
     // 进度条

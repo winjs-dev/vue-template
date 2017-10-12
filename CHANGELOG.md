@@ -1,6 +1,16 @@
 # Change Log
 ---
 
+## 1.1.0
+ 
+`2017-10-12`
+ 
+- webpack 自动构建工具
+ 
+   - `New` 引入减少关键css渲染的自动化解决方案`html-critical-webpack-plugin`
+   
+   - `New` 引入`webpack.HashedModuleIdsPlugin`
+
 ## 1.0.8
  
 `2017-10-09`
