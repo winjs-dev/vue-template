@@ -1,4 +1,4 @@
-module.exports = {
+const lang = {
   global: {
     cancel: '取消',
     send: '发送',
@@ -85,5 +85,6 @@ module.exports = {
     server_error: '服务器请求错误',
     no_network: '无网络连接'
   }
-
 };
+
+export default lang;

@@ -18,24 +18,19 @@ axios.interceptors.request.use(function (config) {
     config.method === 'put' ||
     config.method === 'delete'
   ) {
-    if (config.method === 'post' ||
-      config.method === 'put' ||
-      config.method === 'delete'
-    ) {
-      let contentType = config.headers['Content-Type'];
-      if (typeof contentType !== 'undefined') {
-        if (~contentType.indexOf('multipart')) {
-          // 类型 `multipart/form-data;`
-          config.data = config.data;
-        } else if (~contentType.indexOf('json')) {
-          // 类型 `application/json`
-          // 服务器收到的raw body(原始数据) "{name:"jhon",sex:"man"}"（普通字符串）
-          config.data = JSON.stringify(config.data);
-        } else {
-          // 类型 `application/x-www-form-urlencoded`
-          // 服务器收到的raw body(原始数据) name=homeway&key=nokey
-          config.data = Qs.stringify(config.data);
-        }
+    let contentType = config.headers['Content-Type'];
+    if (typeof contentType !== 'undefined') {
+      if (~contentType.indexOf('multipart')) {
+        // 类型 `multipart/form-data;`
+        config.data = config.data;
+      } else if (~contentType.indexOf('json')) {
+        // 类型 `application/json`
+        // 服务器收到的raw body(原始数据) "{name:"jhon",sex:"man"}"（普通字符串）
+        config.data = JSON.stringify(config.data);
+      } else {
+        // 类型 `application/x-www-form-urlencoded`
+        // 服务器收到的raw body(原始数据) name=homeway&key=nokey
+        config.data = Qs.stringify(config.data);
       }
     }
   }

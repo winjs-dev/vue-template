@@ -9,7 +9,7 @@
     "start": "node build/dev-server.js",
     "dll": "node build/dll-build.js",
     "build": "node build/build.js",
-    "lint": "eslint --ext .js,.vue src/modules"
+    "lint": "eslint --fix --ext .js,.vue src/modules"
   },
   "dependencies": {
     "axios": "^0.15.3",

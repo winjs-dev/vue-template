@@ -7,7 +7,7 @@
 
 /* name module */
 
-module.exports = {
+export default {
   // openapi
   OPEN_PREFIX: 'vipstu/v1/',
   // 灰度升级
