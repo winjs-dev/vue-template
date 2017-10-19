@@ -1,6 +1,15 @@
 # Change Log
 ---
 
+## 1.1.2
+ 
+`2017-10-19`
+ 
+- webpack 自动构建工具
+ 
+   - `New` 引用`portfinder`，解决同时打开多个应用端口被占用的情况，端口号会自动增加，详见`template/bulid/dev-server.js`
+   
+   
 ## 1.1.0
  
 `2017-10-12`
