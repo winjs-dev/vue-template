@@ -1,17 +1,18 @@
-var path = require('path')
-var utils = require('./utils')
-var webpack = require('webpack')
-var config = require('./config')
-var merge = require('webpack-merge')
-var baseWebpackConfig = require('./webpack.base.conf')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
-var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+'use strict'
+const path = require('path')
+const utils = require('./utils')
+const webpack = require('webpack')
+const config = require('./config')
+const merge = require('webpack-merge')
+const baseWebpackConfig = require('./webpack.base.conf')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 {{#cssSprite}}
-var SpritesmithPlugin = require('webpack-spritesmith')
+const SpritesmithPlugin = require('webpack-spritesmith')
 {{/cssSprite}}
 
 // 需要dll打包进来的文件
-var vendors = [
+const vendors = [
   'axios',
   'vue',
   'vue-router',
@@ -19,7 +20,7 @@ var vendors = [
   'normalize.css'
 ]
 
-var webpackConfig = merge(baseWebpackConfig, {
+const webpackConfig = merge(baseWebpackConfig, {
   entry: {
     vendor: vendors
   },
@@ -93,7 +94,7 @@ var webpackConfig = merge(baseWebpackConfig, {
 })
 
 if (config.build.productionGzip) {
-  var CompressionWebpackPlugin = require('compression-webpack-plugin')
+  const CompressionWebpackPlugin = require('compression-webpack-plugin')
 
   webpackConfig.plugins.push(
     new CompressionWebpackPlugin({

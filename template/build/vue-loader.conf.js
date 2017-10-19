@@ -1,7 +1,8 @@
-var utils = require('./utils')
-var config = require('./config')
-var isProduction = utils.isProduction()
-var pxtorem = require('postcss-pxtorem')
+'use strict'
+const utils = require('./utils')
+const config = require('./config')
+const isProduction = utils.isProduction()
+const pxtorem = require('postcss-pxtorem')
 
 module.exports = {
   // 解决把图片提前 require 传给一个变量再传给组件

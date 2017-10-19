@@ -1,15 +1,16 @@
+'use strict'
 require('./check-versions')()
 
 process.env.NODE_ENV = 'dll'
 
-var ora = require('ora')
-var rm = require('rimraf')
-var chalk = require('chalk')
-var webpack = require('webpack')
-var config = require('./config')
-var webpackConfig = require('./webpack.dll.conf')
+const ora = require('ora')
+const rm = require('rimraf')
+const chalk = require('chalk')
+const webpack = require('webpack')
+const config = require('./config')
+const webpackConfig = require('./webpack.dll.conf')
 
-var spinner = ora('building for dll...')
+const spinner = ora('building for dll...')
 spinner.start()
 
 rm(config.directory.dll, err => {

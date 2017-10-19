@@ -2,16 +2,16 @@ require('./check-versions')()
 
 process.env.NODE_ENV = 'production'
 
-var ora = require('ora')
-var rm = require('rimraf')
-var path = require('path')
-var fse = require('fs-extra')
-var chalk = require('chalk')
-var webpack = require('webpack')
-var config = require('./config')
-var webpackConfig = require('./webpack.prod.conf')
+const ora = require('ora')
+const rm = require('rimraf')
+const path = require('path')
+const fse = require('fs-extra')
+const chalk = require('chalk')
+const webpack = require('webpack')
+const config = require('./config')
+const webpackConfig = require('./webpack.prod.conf')
 
-var spinner = ora('building for production...')
+const spinner = ora('building for production...')
 spinner.start()
 
 rm(config.build.assetsRoot, err => {
@@ -31,8 +31,8 @@ rm(config.build.assetsRoot, err => {
     fse.readFile(path.join(config.build.assetsRoot, 'index.html'), 'utf-8', function(err, html) {
       if (err) return console.error('[webpack:build]: read index.html failed')
 
-      var hash = stats.toJson('normal').hash || Date.now();
-      var content = html.replace('config.js', `config.js?${hash}`)
+      const hash = stats.toJson('normal').hash || Date.now();
+      const content = html.replace('config.js', `config.js?${hash}`)
 
       fse.writeFileSync(path.join(config.build.assetsRoot, 'index.html'), content, 'utf-8')
     })

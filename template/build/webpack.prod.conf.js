@@ -1,18 +1,19 @@
-var path = require('path')
-var utils = require('./utils')
-var webpack = require('webpack')
-var config = require('./config')
-var merge = require('webpack-merge')
-var baseWebpackConfig = require('./webpack.base.conf')
-var CopyWebpackPlugin = require('copy-webpack-plugin')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
-var HtmlCriticalPlugin = require('html-critical-webpack-plugin')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
-var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+'use strict'
+const path = require('path')
+const utils = require('./utils')
+const webpack = require('webpack')
+const config = require('./config')
+const merge = require('webpack-merge')
+const baseWebpackConfig = require('./webpack.base.conf')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlCriticalPlugin = require('html-critical-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 
-var env = config.build.env
+const env = config.build.env
 
-var webpackConfig = merge(baseWebpackConfig, {
+const webpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({
       sourceMap: config.build.productionSourceMap,
@@ -30,12 +31,14 @@ var webpackConfig = merge(baseWebpackConfig, {
     new webpack.DefinePlugin({
       'process.env': env
     }),
+    // UglifyJs do not support ES6+, you can also use babel-minify for better treeshaking: https://github.com/babel/minify
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false,
         drop_console: true
       },
-      sourceMap: true
+      sourceMap: true,
+      parallel: true
     }),
     // extract css into its own file
     new ExtractTextPlugin({
@@ -81,7 +84,7 @@ var webpackConfig = merge(baseWebpackConfig, {
         blockJSRequests: false,
       }
     }),
-    // cache Module Identifiers
+    // cache Module Identifiers, keep module.id stable when vender modules does not change
     new webpack.HashedModuleIdsPlugin(),
     // split vendor js into its own file
     new webpack.optimize.CommonsChunkPlugin({
@@ -133,7 +136,7 @@ var webpackConfig = merge(baseWebpackConfig, {
 })
 
 if (config.build.productionImagemin) {
-  var ImageminPlugin = require('imagemin-webpack-plugin').default
+  const ImageminPlugin = require('imagemin-webpack-plugin').default
 
   webpackConfig.plugins.push(
     // Make sure that the plugin is after any plugins that add images
@@ -148,7 +151,7 @@ if (config.build.productionImagemin) {
 }
 
 if (config.build.productionGzip) {
-  var CompressionWebpackPlugin = require('compression-webpack-plugin')
+  const CompressionWebpackPlugin = require('compression-webpack-plugin')
 
   webpackConfig.plugins.push(
     new CompressionWebpackPlugin({
@@ -166,7 +169,7 @@ if (config.build.productionGzip) {
 }
 
 if (config.build.bundleAnalyzerReport) {
-  var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+  const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
   webpackConfig.plugins.push(new BundleAnalyzerPlugin())
 }
 
