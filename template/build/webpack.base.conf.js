@@ -53,7 +53,7 @@ const base = {
       {
         test: /\.(js|jsx)$/,
         use: ['happypack/loader?id=happybabel'],
-        include: [utils.resolve('src/modules'), utils.resolve('test')]
+        include: [utils.resolve('src/modules')]
       },
       {
         test: /\.html$/,
@@ -63,7 +63,7 @@ const base = {
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
-        include: [utils.resolve('src/assets'), utils.resolve('modules'), utils.resolve('node_modules')],
+        include: [utils.resolve('src')],
         options: {
           limit: 10000,
           name: utils.assetsPath('[name].[hash:7].[ext]')
@@ -72,7 +72,7 @@ const base = {
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
         loader: 'url-loader',
-        include: [utils.resolve('src/assets'), utils.resolve('modules'), utils.resolve('node_modules')],
+        include: [utils.resolve('src')],
         options: {
           limit: 10000,
           name: utils.assetsPath('[name].[hash:7].[ext]')
@@ -81,7 +81,7 @@ const base = {
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',
-        include: [utils.resolve('src/assets'), utils.resolve('modules'), utils.resolve('node_modules')],
+        include: [utils.resolve('src')],
         options: {
           limit: 10000,
           name: utils.assetsPath('[name].[hash:7].[ext]')
