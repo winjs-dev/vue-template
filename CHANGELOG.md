@@ -1,6 +1,14 @@
 # Change Log
 ---
 
+## 1.1.4
+ 
+`2017-11-02`
+ 
+- 项目src
+ 
+   - `Improved` 针对`axios`进行进一步的封装，返回`Promise`的实例。详见`src/modules/services/_axios.js`
+
 ## 1.1.2
  
 `2017-10-19`
