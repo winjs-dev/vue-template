@@ -1,6 +1,22 @@
 # Change Log
 ---
 
+## 2.0.1
+ 
+`2017-11-13`
+ 
+- webpack 自动构建工具
+ 
+   - `Changed` `webpack`版本更改为3.X，及配套依赖更新版本如（`optimize-css-assets-webpack-plugin`）
+   
+   - `Changed` HRM更改为webpack-dev-server
+   
+- src
+    
+   - `Changed` 新增`RESTFULLURL.js`（通过easymock自动生成）无需手动创建。详细`src/modules/services`
+    
+   - `Changed` 将`services`挂载到了vue的原型链上，`views`或`component`引用的时候用`this.$services.method`。详细见示例`src/modules/views/hello/hello.vue`
+   
 ## 1.1.4
  
 `2017-11-02`
