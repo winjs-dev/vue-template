@@ -8,6 +8,7 @@ const happyThreadPool = HappyPack.ThreadPool({size: os.cpus().length})
 const vueLoaderConfig = require('./vue-loader.conf')
 
 const base = {
+  context: path.resolve(__dirname, '../'),
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
@@ -30,21 +31,22 @@ const base = {
       'services': utils.resolve('src/modules/services'),
       'lang': utils.resolve('src/modules/lang/zh-cn'),
       'variable': utils.resolve('src/assets/less/variable.less'),
-      'utils': utils.resolve('node_modules/cloud-utils/dist/cloud-utils.min'),
+      'utils': utils.resolve('node_modules/cloud-utils/dist/cloud-utils.esm'),
       'mixins': utils.resolve('node_modules/magicless/magicless.less')
     }
   },
   module: {
     rules: [
-      {
+      ...(config.dev.useEslint? [{
         test: /\.(js|vue)$/,
         loader: 'eslint-loader',
         enforce: 'pre',
-        include: [utils.resolve('src/modules')],
+        include: [utils.resolve('src'), utils.resolve('test')],
         options: {
-          formatter: require('eslint-friendly-formatter')
+          formatter: require('eslint-friendly-formatter'),
+          emitWarning: !config.dev.showEslintErrorsInOverlay
         }
-      },
+      }] : []),
       {
         test: /\.vue$/,
         loader: 'vue-loader',

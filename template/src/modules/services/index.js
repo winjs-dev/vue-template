@@ -7,7 +7,16 @@
 
 /* name module */
 import _Axios from './_axios';
+import urls from './RESTFULLURL';
 
-export function login(data) {
-  return _Axios('/usercenter/user/mobile_login', {data});
-}
+let FUNS = {};
+
+Object.keys(urls).forEach((key) => {
+  FUNS[key] = (options) => {
+    return new Promise((resolve, reject) => {
+      resolve(_Axios(urls[key], options));
+    });
+  }
+});
+
+export default FUNS;

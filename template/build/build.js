@@ -27,6 +27,11 @@ rm(config.build.assetsRoot, err => {
       chunkModules: false
     }) + '\n\n')
 
+    if (stats.hasErrors()) {
+      console.log(chalk.red('  Build failed with errors.\n'))
+      process.exit(1)
+    }
+
     // 为dist目录下index.html引用的config.js添加hash,去除缓存
     fse.readFile(path.join(config.build.assetsRoot, 'index.html'), 'utf-8', function(err, html) {
       if (err) return console.error('[webpack:build]: read index.html failed')

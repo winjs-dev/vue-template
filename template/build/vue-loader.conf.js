@@ -3,12 +3,13 @@ const utils = require('./utils')
 const config = require('./config')
 const isProduction = utils.isProduction()
 const pxtorem = require('postcss-pxtorem')
+const sourceMapEnabled = isProduction
+  ? config.build.productionSourceMap
+  : config.dev.cssSourceMap
 
 module.exports = {
   loaders: utils.cssLoaders({
-    sourceMap: isProduction
-      ? config.build.productionSourceMap
-      : config.dev.cssSourceMap,
+    sourceMap: sourceMapEnabled,
     extract: isProduction
   }),
   // 解决把图片提前 require 传给一个变量再传给组件

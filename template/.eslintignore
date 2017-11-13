@@ -1,7 +1,7 @@
-build/*.js
-config/*.js
-
-dist
+/build/
+/dist/
+/*.js
 node_modules
 dev
 npm-scripts
+RESTFULLURL.js

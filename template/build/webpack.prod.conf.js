@@ -17,14 +17,15 @@ const webpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({
       sourceMap: config.build.productionSourceMap,
-      extract: true
+      extract: true,
+      usePostCSS: true
     })
   },
-  devtool: config.build.productionSourceMap ? '#source-map' : false,
+  devtool: config.build.productionSourceMap ? config.build.devtool : false,
   output: {
     path: config.build.assetsRoot,
     filename: '[name].[chunkhash].js',
-    chunkFilename: '[id].[chunkhash].js'
+    chunkFilename: '[name].[chunkhash].js'
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
@@ -37,26 +38,29 @@ const webpackConfig = merge(baseWebpackConfig, {
         warnings: false,
         drop_console: true
       },
-      sourceMap: true,
+      sourceMap: config.build.productionSourceMap,
       parallel: true
     }),
     // extract css into its own file
     new ExtractTextPlugin({
       filename: '[name].[contenthash].css',
-      allChunks: true
+      // set the following option to `true` if you want to extract CSS from
+      // codesplit chunks into this main css file as well.
+      // This will result in *all* of your app's CSS being loaded upfront.
+      allChunks: false
     }),
     // Compress extracted CSS. We are using this plugin so that possible
     // duplicated CSS from different components can be deduped.
     new OptimizeCSSPlugin({
-      cssProcessorOptions: {
-        safe: true
-      }
+      cssProcessorOptions: config.build.productionSourceMap
+        ? { safe: true, map: { inline: false } }
+        : { safe: true }
     }),
     // generate dist index.html with correct asset hash for caching.
     // you can customize output by editing /index.html
     // see https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
-      filename: 'index.html',
+      filename: config.build.index,
       template: path.join(config.directory.root, 'src/index.html'),
       inject: true,
       minify: {
@@ -86,6 +90,8 @@ const webpackConfig = merge(baseWebpackConfig, {
     }),
     // cache Module Identifiers, keep module.id stable when vender modules does not change
     new webpack.HashedModuleIdsPlugin(),
+    // enable scope hoisting
+    new webpack.optimize.ModuleConcatenationPlugin(),
     // split vendor js into its own file
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
@@ -104,7 +110,16 @@ const webpackConfig = merge(baseWebpackConfig, {
     // prevent vendor hash from being updated whenever app bundle is updated
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest',
-      chunks: ['vendor']
+      minChunks: Infinity,
+    }),
+    // This instance extracts shared chunks from code splitted chunks and bundles them
+    // in a separate chunk, similar to the vendor chunk
+    // see: https://webpack.js.org/plugins/commons-chunk-plugin/#extra-async-commons-chunk
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'app',
+      async: 'vendor-async',
+      children: true,
+      minChunks: 3,
     }),
     // 配置好Dll
     new webpack.DllReferencePlugin({

@@ -6,7 +6,10 @@
 
 ``` bash
 # install dependencies
-npm install
+npm install or yarn 
+
+# dll
+npm run dll
 
 # serve with hot reload at localhost:3000
 npm run dev
@@ -21,5 +24,5 @@ npm run build --report
 ## Features
 
 - Equip with Vue.js, Vue-Router, Axios, ES6 & Babel
-- Build with Webpack 2.X & Vue Loader
+- Build with Webpack 3.X & Vue Loader
 - Stylesheets in Less

@@ -27,10 +27,11 @@ const webpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({
       sourceMap: config.build.productionSourceMap,
-      extract: true
+      extract: true,
+      usePostCSS: true
     })
   },
-  devtool: '#source-map',
+  devtool: config.build.devtool,
   output: {
     path: config.directory.dll,
     filename: '[name].dll.js',
@@ -55,9 +56,11 @@ const webpackConfig = merge(baseWebpackConfig, {
         warnings: false,
         drop_console: true
       },
-      sourceMap: true
+      sourceMap: config.build.productionSourceMap,
+      parallel: true
     }),
-
+    // enable scope hoisting
+    new webpack.optimize.ModuleConcatenationPlugin(),
     // extract css into its own file
     new ExtractTextPlugin({
       filename: '[name].dll.css'
