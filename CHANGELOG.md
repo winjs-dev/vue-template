@@ -1,6 +1,14 @@
 # Change Log
 ---
 
+## 2.0.2
+ 
+`2017-11-20`
+ 
+- webpack 自动构建工具
+ 
+   - `Fixed` `html-critical-webpack-plugin`引用时，出现`Fatal Error: Penthouse timed out after 30s.`的异常  
+   
 ## 2.0.1
  
 `2017-11-13`

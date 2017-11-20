@@ -84,6 +84,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       extract: true,
       width: 375,
       height: 565,
+      timeout: 300000,
       penthouse: {
         blockJSRequests: false,
       }
