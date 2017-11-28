@@ -83,15 +83,15 @@ export default function _Axios(url, {
   method = 'post',
   timeout = 10000,
   prefix = window.CT.OPEN_PREFIX,
-  data = {
-    'date': Date.now()
-  },
-  headers = {
-    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8;'
-  },
+  data = {},
+  headers = {},
   dataType = 'json'
 }) {
   let baseUrl = autoMatchBaseUrl(prefix);
+  data = Object.assign({}, data);
+  headers = Object.assign({
+    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8;'
+  }, headers);
 
   return axios({
     // `baseURL`如果`url`不是绝对地址，那么将会加在其前面。
