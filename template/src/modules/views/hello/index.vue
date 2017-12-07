@@ -40,8 +40,11 @@
               methods: {
                 getTenantInfo() {
                   // 接口请求示例
+                  const data = {
+                    tenant_key: '06db342e571d46da8867b79d7e8a47ea'
+                  };
                   this.$services.funcTenantInfoGet({
-                    tenant_key: &#x27;06db342e571d46da8867b79d7e8a47ea&#x27;
+                    data
                   }).then((res) =&gt; {
                     console.log(&#x27;接口请求成功：&#x27; + JSON.stringify(res, null, 2));
                     this.message = formatDate(Date.now());
@@ -91,8 +94,11 @@
     },
     methods: {
       getTenantInfo() {
-        this.$services.funcTenantInfoGet({
+        const data = {
           tenant_key: '06db342e571d46da8867b79d7e8a47ea'
+        };
+        this.$services.funcTenantInfoGet({
+          data
         }).then((res) => {
           console.log('接口请求成功：' + JSON.stringify(res, null, 2));
           this.message += formatDate(Date.now());

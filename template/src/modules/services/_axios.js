@@ -49,19 +49,19 @@ axios.interceptors.request.use(function (config) {
 // 返回的数据类型默认是json，若是其他类型（text）就会出现问题，因此用try,catch捕获异常
 axios.interceptors.response.use(function (response) {
   // 对返回的数据进行一些处理
-  let responseConfig = response && response.config;
+  // let responseConfig = response && response.config;
   // 根据具体项目接口返回数据进行处理
   let result = response && response.data;
-  let data = result.data[0];
-  // 以下代码，可根据具体业务增删。
-  // 全局响应拦截器，demo示例：
-  if (responseConfig.responseType === 'json') {
-    if ((data.error_no + '') === '2000') { // 未登录已超时
-      return;
-    }
-  }
+  // let data = result.data[0];
+  // // 以下代码，可根据具体业务增删。
+  // // 全局响应拦截器，demo示例：
+  // if (responseConfig.responseType === 'json') {
+  //   if ((data.error_no + '') === '2000') { // 未登录已超时
+  //     return;
+  //   }
+  // }
 
-  return data;
+  return result;
 }, function (error) {
   // 对返回的错误进行一些处理
   return Promise.reject(error);
