@@ -14,26 +14,6 @@ import autoMatchBaseUrl from './autoMatchBaseUrl';
 
 // 添加一个请求拦截器 （于transformRequest之前处理）
 axios.interceptors.request.use(function (config) {
-  if (config.method === 'post' ||
-    config.method === 'put' ||
-    config.method === 'delete'
-  ) {
-    let contentType = config.headers['Content-Type'];
-    if (typeof contentType !== 'undefined') {
-      if (~contentType.indexOf('multipart')) {
-        // 类型 `multipart/form-data;`
-        config.data = config.data;
-      } else if (~contentType.indexOf('json')) {
-        // 类型 `application/json`
-        // 服务器收到的raw body(原始数据) "{name:"jhon",sex:"man"}"（普通字符串）
-        config.data = JSON.stringify(config.data);
-      } else {
-        // 类型 `application/x-www-form-urlencoded`
-        // 服务器收到的raw body(原始数据) name=homeway&key=nokey
-        config.data = Qs.stringify(config.data);
-      }
-    }
-  }
   // 以下代码，鉴权token,可根据具体业务增删。
   // demo示例:
   if (~config['url'].indexOf('operatorQry')) {
@@ -48,24 +28,65 @@ axios.interceptors.request.use(function (config) {
 // 添加一个返回拦截器 （于transformResponse之后处理）
 // 返回的数据类型默认是json，若是其他类型（text）就会出现问题，因此用try,catch捕获异常
 axios.interceptors.response.use(function (response) {
-  // 对返回的数据进行一些处理
-  // let responseConfig = response && response.config;
-  // 根据具体项目接口返回数据进行处理
-  let result = response && response.data;
-  // let data = result.data[0];
-  // // 以下代码，可根据具体业务增删。
-  // // 全局响应拦截器，demo示例：
-  // if (responseConfig.responseType === 'json') {
-  //   if ((data.error_no + '') === '2000') { // 未登录已超时
-  //     return;
-  //   }
-  // }
-
-  return result;
+  return response;
 }, function (error) {
   // 对返回的错误进行一些处理
   return Promise.reject(error);
 });
+
+function checkStatus(response) {
+  // loading
+  // 如果http状态码正常，则直接返回数据
+  if (response) {
+    const status = response.status;
+    if (status === 200 || status === 304 || status === 400) {
+      // 如果不需要除了data之外的数据，可以直接 return response.data
+      return response;
+    } else {
+      let errorInfo = '';
+      switch (status) {
+        case -1:
+          errorInfo = '远程服务响应失败,请稍后重试';
+          break;
+        case 500:
+          errorInfo = '500：访问服务失败';
+          break;
+        case 404:
+          errorInfo = '404：资源不存在';
+          break;
+        case 501:
+          errorInfo = '501：未实现';
+          break;
+        case 502:
+          errorInfo = '502：无效网关';
+          break;
+        case 401:
+          errorInfo = '访问令牌无效或已过期';
+          break;
+      }
+      return {
+        status,
+        msg: errorInfo
+      }
+    }
+  }
+  // 异常状态下，把错误信息返回去
+  return {
+    status: -404,
+    msg: '网络异常'
+  };
+}
+
+function checkCode(res) {
+  // 如果code异常(这里已经包括网络错误，服务器错误，后端抛出的错误)，可以弹出一个错误提示，告诉用户
+  // if (res.status === -404) {
+  //   console.log(res.msg);
+  // }
+  // if (res.data && (!res.data.success)) {
+  //   console.log(res.data.error_msg);
+  // }
+  return res;
+}
 
 /**
  * 基于axios ajax请求
@@ -87,44 +108,56 @@ export default function _Axios(url, {
   headers = {},
   dataType = 'json'
 }) {
-  let baseUrl = autoMatchBaseUrl(prefix);
-  data = Object.assign({}, data);
-  headers = Object.assign({
-    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8;'
+  const baseURL = autoMatchBaseUrl(prefix);
+
+  headers = Object.assign(method === 'get' ? {
+    'X-Requested-With': 'XMLHttpRequest',
+    'Accept': 'application/json',
+    'Content-Type': 'application/json; charset=UTF-8'
+  } : {
+    'X-Requested-With': 'XMLHttpRequest',
+    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
   }, headers);
 
-  return axios({
-    // `baseURL`如果`url`不是绝对地址，那么将会加在其前面。
-    // 当axios使用相对地址时这个设置非常方便
-    // 在其实例中的方法
-    baseURL: baseUrl,
-    url: url,
-    method: method,
-    // `params`是请求连接中的请求参数，必须是一个纯对象，或者URLSearchParams对象
-    params: method === 'get' && data,
-    // `data`是请求提需要设置的数据
-    // 只适用于应用的'PUT','POST','PATCH'，请求方法
-    // 当没有设置`transformRequest`时，必须是以下其中之一的类型（不可重复？）：
-    // -string,plain object,ArrayBuffer,ArrayBufferView,URLSearchParams
-    // -仅浏览器：FormData,File,Blob
-    // -仅Node：Stream
-    data: method === 'post' && data,
-    timeout: timeout,
-    headers: headers,
-    // `responseType`表明服务器返回的数据类型，这些类型的设置应该是
-    // 'arraybuffer','blob','document','json','text',stream'
-    responseType: dataType,
-    // `transformRequest`允许请求的数据在传到服务器之前进行转化。
-    // 这个只适用于`PUT`,`GET`,`PATCH`方法。
-    // 数组中的最后一个函数必须返回一个字符串或者一个`ArrayBuffer`,或者`Stream`,`Buffer`实例,`ArrayBuffer`,`FormData`
-    transformRequest: [function (data) {
-      // 依自己的需求对请求数据进行处理
-      return data;
-    }],
-    // `transformResponse`允许返回的数据传入then/catch之前进行处理
-    transformResponse: [function (data) {
-      // 依自己的需求对数据进行处理
-      return data;
-    }]
-  });
+  const defaultConfig = {
+    baseURL,
+    url,
+    method,
+    params: data,
+    data: data,
+    timeout,
+    headers,
+    responseType: dataType
+  };
+
+  if (method === 'get') {
+    delete defaultConfig.data;
+  } else {
+    delete defaultConfig.params;
+  }
+
+  const contentType = headers['Content-Type'];
+
+  if (typeof contentType !== 'undefined') {
+    if (~contentType.indexOf('multipart')) {
+      // 类型 `multipart/form-data;`
+      defaultConfig.data = data;
+    } else if (~contentType.indexOf('json')) {
+      // 类型 `application/json`
+      // 服务器收到的raw body(原始数据) "{name:"jhon",sex:"man"}"（普通字符串）
+      defaultConfig.data = JSON.stringify(data);
+    } else {
+      // 类型 `application/x-www-form-urlencoded`
+      // 服务器收到的raw body(原始数据) name=homeway&key=nokey
+      defaultConfig.data = Qs.stringify(data);
+    }
+  }
+
+  return axios(defaultConfig)
+    .then((response) => {
+      return checkStatus(response);
+    })
+    .then((res) => {
+      return checkCode(res);
+    });
 }
