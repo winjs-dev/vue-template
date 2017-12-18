@@ -12,7 +12,7 @@ import urls from './RESTFULLURL';
 let FUNS = {};
 
 Object.keys(urls).forEach((key) => {
-  FUNS[key] = (options) => {
+  FUNS[key] = (options = {}) => {
     return new Promise((resolve, reject) => {
       resolve(_Axios(urls[key], options));
     });
