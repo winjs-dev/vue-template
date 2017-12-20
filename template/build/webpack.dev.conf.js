@@ -18,6 +18,8 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 
   // these devServer options should be customized in /config/index.js
   devServer: {
+    // 配置解析静态资源路径
+    contentBase: [config.directory.src, path.join(config.directory.src, 'modules')],
     historyApiFallback: true,
     hot: true,
     host: process.env.HOST || config.dev.host,
