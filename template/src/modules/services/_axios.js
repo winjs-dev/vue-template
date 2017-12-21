@@ -79,7 +79,7 @@ function checkStatus(response) {
           errorInfo = '503: 服务不可用'
           break;
         default:
-          errorInfo = `连接错误${err.response.status}`
+          errorInfo = `连接错误${status}`
       }
       return {
         status,
