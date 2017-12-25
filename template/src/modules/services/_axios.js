@@ -61,10 +61,10 @@ function checkStatus(response) {
           errorInfo = '404：资源不存在';
           break;
         case 405:
-          err.message = '405: 请求方法未允许'
+          errorInfo = '405: 请求方法未允许'
           break;
         case 408:
-          err.message = '408: 请求超时'
+          errorInfo = '408: 请求超时'
           break;
         case 500:
           errorInfo = '500：访问服务失败';
