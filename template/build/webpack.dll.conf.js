@@ -13,7 +13,6 @@ const SpritesmithPlugin = require('webpack-spritesmith')
 
 // 需要dll打包进来的文件
 const vendors = [
-  'axios',
   'vue',
   'vue-router',
   'lib-flexible',
