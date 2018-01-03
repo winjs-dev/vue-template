@@ -27,6 +27,11 @@ rm(config.directory.dll, err => {
     }) + '\n\n')
 
     if (stats.hasErrors()) {
+      const info = stats.toJson()
+      console.error('\n');
+      console.error(chalk.magenta('编译打包出错了 ~~~~(>_<)~~~~ \n'))
+      console.error(chalk.magenta('具体错误信息如下 \n'))
+      console.error(chalk.red(`${info.errors}.\n`))
       console.log(chalk.red('  Build failed with errors.\n'))
       process.exit(1)
     }

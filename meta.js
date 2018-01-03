@@ -1,13 +1,27 @@
+'use strict'
+const path = require('path')
+const {
+  sortDependencies,
+  installDependencies,
+  runLintFix,
+  printMessage,
+} = require('./utils')
+const pkg = require('./package.json')
+const templateVersion = pkg.version
+
 module.exports = {
   "helpers": {
-    "if_or": function (v1, v2, options) {
+    if_or (v1, v2, options) {
       if (v1 || v2) {
         return options.fn(this);
       }
       return options.inverse(this);
+    },
+    template_version() {
+      return templateVersion
     }
   },
-  "prompts": {
+  prompts: {
     "name": {
       "type": "string",
       "required": true,
@@ -28,9 +42,30 @@ module.exports = {
       "message": "Install webapck-spritesmith?"
     },
   },
-  "filters": {
+  filters: {
     "src/assets/less/_sprite.css": "cssSprite",
     "src/assets/images/sprites/*": "cssSprite"
   },
-    "completeMessage": "To get started:\n\n  cd {{destDirName}}\n  npm install\n  npm run dll（公共静态资源）\n  npm run dev（开发专用）\n  npm run build（线上专用）"
+  complete: function(data, { chalk }) {
+    const green = chalk.green
+
+    sortDependencies(data, green)
+
+    const cwd = path.join(process.cwd(), data.inPlace ? '' : data.destDirName)
+
+    if (data.autoInstall) {
+      installDependencies(cwd, data.autoInstall, green)
+        .then(() => {
+          return runLintFix(cwd, data, green)
+        })
+        .then(() => {
+          printMessage(data, green)
+        })
+        .catch(e => {
+          console.log(chalk.red('Error:'), e)
+        })
+    } else {
+      printMessage(data, chalk)
+    }
+  }
 };

@@ -16,6 +16,7 @@ body {
   font-size: @fontSizeH3;
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   color: @fontColor;
+  overflow: hidden;
 }
 
 .none {
@@ -80,12 +81,11 @@ a:active {
   text-decoration: none;
 }
 
-// Forms
+  // Forms
 button,
 html input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-  -webkit-appearance: button;
   cursor: pointer;
 }
 
@@ -100,10 +100,6 @@ input {
   border: none;
 }
 
-textarea {
-  overflow: auto;
-}
-
 // Tables
 table {
   border-collapse: collapse;
@@ -113,10 +109,5 @@ table {
 ul,
 li {
   list-style: none;
-}
-
-// Border
-img {
-  border: none;
 }
 

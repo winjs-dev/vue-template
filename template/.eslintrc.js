@@ -3,29 +3,34 @@
 
 module.exports = {
   root: true,
-  parser: 'babel-eslint',
   // JavaScript 语言选项
   parserOptions: {
+    parser: 'babel-eslint',
     // ECMAScript 版本
-    'ecmaVersion': 6,
+    ecmaVersion: 6,
     // ECMAScript 模块
-    'sourceType': 'module',
+    sourceType: 'module',
     // 想使用的额外的语言特性:
-    'ecmaFeatures': {
+    ecmaFeatures: {
       // 允许在全局作用域下使用 return 语句
-      'globalReturn': true,
+      globalReturn: true,
       // impliedStric
-      'impliedStrict': true,
+      impliedStrict: true,
       // 启用 JSX
-      'jsx': true
+      jsx: true
     }
   },
   //环境定义了预定义的全局变量。更多在官网查看
   env: {
-    'browser': true,
+    browser: true,
   },
-  // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
-  extends: 'standard',
+  extends: [
+    // https://github.com/vuejs/eslint-plugin-vue#priority-a-essential-error-prevention
+    // consider switching to `plugin:vue/strongly-recommended` or `plugin:vue/recommended` for stricter rules.
+    'plugin:vue/essential',
+    // https://github.com/standard/standard/blob/master/docs/RULES-en.md
+    'standard'
+  ],
   // required to lint *.vue files
   plugins: [
     'html'
@@ -36,7 +41,7 @@ module.exports = {
    *  'warn' 或 1 - 开启规则，使用警告级别的错误：warn (不会导致程序退出),
    *  'error' 或 2 - 开启规则，使用错误级别的错误：error (当被触发的时候，程序会退出)
    */
-  'rules': {
+  rules: {
     ////////////////
     // 可能的错误  //
     ////////////////

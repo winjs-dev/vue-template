@@ -10,8 +10,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlCriticalPlugin = require('html-critical-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
-
-const env = config.build.env
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 const webpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -25,18 +24,19 @@ const webpackConfig = merge(baseWebpackConfig, {
   output: {
     path: config.build.assetsRoot,
     filename: '[name].[chunkhash].js',
-    chunkFilename: '[name].[chunkhash].js'
+    chunkFilename: '[id].[chunkhash].js'
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
-      'process.env': env
+      'process.env': require('./config/prod.env')
     }),
-    // UglifyJs do not support ES6+, you can also use babel-minify for better treeshaking: https://github.com/babel/minify
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-        drop_console: true
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        compress: {
+          warnings: false,
+          drop_console: true
+        }
       },
       sourceMap: config.build.productionSourceMap,
       parallel: true
@@ -89,7 +89,7 @@ const webpackConfig = merge(baseWebpackConfig, {
         blockJSRequests: false,
       }
     }),
-    // cache Module Identifiers, keep module.id stable when vender modules does not change
+    // cache Module Identifiers, keep module.id stable when vendor modules does not change
     new webpack.HashedModuleIdsPlugin(),
     // enable scope hoisting
     new webpack.optimize.ModuleConcatenationPlugin(),
@@ -111,7 +111,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     // prevent vendor hash from being updated whenever app bundle is updated
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest',
-      minChunks: Infinity,
+      minChunks: Infinity
     }),
     // This instance extracts shared chunks from code splitted chunks and bundles them
     // in a separate chunk, similar to the vendor chunk
@@ -120,7 +120,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       name: 'app',
       async: 'vendor-async',
       children: true,
-      minChunks: 3,
+      minChunks: 3
     }),
     // 配置好Dll
     new webpack.DllReferencePlugin({
@@ -131,8 +131,6 @@ const webpackConfig = merge(baseWebpackConfig, {
     }),
     // 添加版本号
     new webpack.BannerPlugin('current version: ' + new Date()),
-    // 进度条
-    new webpack.ProgressPlugin(),
     // copy custom static assets
     new CopyWebpackPlugin([
       {

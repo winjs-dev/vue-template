@@ -2,6 +2,5 @@
 /dist/
 /*.js
 node_modules
-dev
-npm-scripts
+/dev/
 RESTFULLURL.js

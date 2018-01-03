@@ -7,6 +7,17 @@ const HappyPack = require('happypack')
 const happyThreadPool = HappyPack.ThreadPool({size: os.cpus().length})
 const vueLoaderConfig = require('./vue-loader.conf')
 
+const createLintingRule = () => ({
+  test: /\.(js|vue)$/,
+  loader: 'eslint-loader',
+  enforce: 'pre',
+  include: [resolve('src'), resolve('test')],
+  options: {
+    formatter: require('eslint-friendly-formatter'),
+    emitWarning: !config.dev.showEslintErrorsInOverlay
+  }
+})
+
 const base = {
   context: path.resolve(__dirname, '../'),
   output: {
@@ -37,16 +48,7 @@ const base = {
   },
   module: {
     rules: [
-      ...(config.dev.useEslint? [{
-        test: /\.(js|vue)$/,
-        loader: 'eslint-loader',
-        enforce: 'pre',
-        include: [utils.resolve('src'), utils.resolve('test')],
-        options: {
-          formatter: require('eslint-friendly-formatter'),
-          emitWarning: !config.dev.showEslintErrorsInOverlay
-        }
-      }] : []),
+      ...(config.dev.useEslint? [createLintingRule()] : []),
       {
         test: /\.vue$/,
         loader: 'vue-loader',
@@ -55,7 +57,8 @@ const base = {
       {
         test: /\.(js|jsx)$/,
         use: ['happypack/loader?id=happybabel'],
-        include: [utils.resolve('src/modules')]
+        // see the website https://github.com/vuejs-templates/webpack/issues/1140
+        include: [utils.resolve('src/modules'), utils.resolve('node_modules/webpack-dev-server/client')]
       },
       {
         test: /\.html$/,
