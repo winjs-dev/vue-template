@@ -11,7 +11,7 @@ const templateVersion = pkg.version
 
 module.exports = {
   "helpers": {
-    if_or (v1, v2, options) {
+    if_or(v1, v2, options) {
       if (v1 || v2) {
         return options.fn(this);
       }
@@ -22,31 +22,53 @@ module.exports = {
     }
   },
   prompts: {
-    "name": {
-      "type": "string",
-      "required": true,
-      "message": "Project name"
+    name: {
+      type: 'string',
+      required: true,
+      message: 'Project name'
     },
-    "description": {
-      "type": "string",
-      "required": false,
-      "message": "Project description",
-      "default": "A Vue.js project"
+    description: {
+      type: 'string',
+      required: false,
+      message: 'Project description',
+      default: 'A Vue.js project'
     },
-    "author": {
-      "type": "string",
-      "message": "Author"
+    author: {
+      type: 'string',
+      message: 'Author'
     },
-    "cssSprite": {
-      "type": "confirm",
-      "message": "Install webapck-spritesmith?"
+    cssSprite: {
+      type: 'confirm',
+      message: 'Install webapck-spritesmith?'
     },
+    autoInstall: {
+      type: 'list',
+      message:
+        'Should we run `npm install` for you after the project has been created? (recommended)',
+      choices: [
+        {
+          name: 'Yes, use NPM',
+          value: 'npm',
+          short: 'npm',
+        },
+        {
+          name: 'Yes, use Yarn',
+          value: 'yarn',
+          short: 'yarn',
+        },
+        {
+          name: 'No, I will handle that myself',
+          value: false,
+          short: 'no',
+        }
+      ]
+    }
   },
   filters: {
-    "src/assets/less/_sprite.css": "cssSprite",
-    "src/assets/images/sprites/*": "cssSprite"
+    'src/assets/less/_sprite.css': 'cssSprite',
+    'src/assets/images/sprites/*': 'cssSprite'
   },
-  complete: function(data, { chalk }) {
+  complete: function (data, {chalk}) {
     const green = chalk.green
 
     sortDependencies(data, green)

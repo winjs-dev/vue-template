@@ -76,7 +76,7 @@ To get started:
   ${yellow(
     `${data.inPlace ? '' : `cd ${data.destDirName}\n  `}${installMsg(
       data
-    )}${lintMsg(data)}npm run dll（公共静态资源）\n npm run dev（开发专用）\n npm run build（线上专用`
+    )}${lintMsg(data)}npm run dll（公共静态资源）\n  npm run dev（开发专用）\n  npm run build（线上专用`
   )}
   
 Documentation can be found at https://vuejs-templates.github.io/webpack
