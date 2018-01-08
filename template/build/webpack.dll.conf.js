@@ -13,6 +13,7 @@ const SpritesmithPlugin = require('webpack-spritesmith')
 
 // 需要dll打包进来的文件
 const vendors = [
+  require.resolve('./polyfills'),
   'vue',
   'vue-router',
   'lib-flexible',
@@ -21,7 +22,7 @@ const vendors = [
 
 const webpackConfig = merge(baseWebpackConfig, {
   entry: {
-    vendor: vendors
+    vendors
   },
   module: {
     rules: utils.styleLoaders({
@@ -90,6 +91,8 @@ const webpackConfig = merge(baseWebpackConfig, {
       }
     }),
     {{/cssSprite}}
+    // 添加版本号
+    new webpack.BannerPlugin('current version: ' + new Date()),
     // 进度条
     new webpack.ProgressPlugin()
   ]
