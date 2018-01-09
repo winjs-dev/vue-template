@@ -12,7 +12,7 @@ const SpritesmithPlugin = require('webpack-spritesmith')
 {{/cssSprite}}
 
 // 需要dll打包进来的文件
-const vendors = [
+const vendor = [
   require.resolve('./polyfills'),
   'vue',
   'vue-router',
@@ -22,7 +22,7 @@ const vendors = [
 
 const webpackConfig = merge(baseWebpackConfig, {
   entry: {
-    vendors
+    vendor
   },
   module: {
     rules: utils.styleLoaders({
