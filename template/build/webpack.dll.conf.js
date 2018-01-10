@@ -91,8 +91,6 @@ const webpackConfig = merge(baseWebpackConfig, {
       }
     }),
     {{/cssSprite}}
-    // 添加版本号
-    new webpack.BannerPlugin('current version: ' + new Date()),
     // 进度条
     new webpack.ProgressPlugin()
   ]

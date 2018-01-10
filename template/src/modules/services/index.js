@@ -13,9 +13,7 @@ let FUNS = {};
 
 Object.keys(urls).forEach((key) => {
   FUNS[key] = (options = {}) => {
-    return new Promise((resolve, reject) => {
-      resolve(_Axios(urls[key], options));
-    });
+    return _Axios(urls[key], options);
   }
 });
 

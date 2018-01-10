@@ -28,17 +28,18 @@ axios.interceptors.request.use(function (config) {
 // 添加一个返回拦截器 （于transformResponse之后处理）
 // 返回的数据类型默认是json，若是其他类型（text）就会出现问题，因此用try,catch捕获异常
 axios.interceptors.response.use(function (response) {
-  return response;
+  return checkStatus(response);
 }, function (error) {
   // 对返回的错误进行一些处理
-  return Promise.reject(error);
+  return Promise.reject(checkStatus(error));
 });
 
 function checkStatus(response) {
   // loading
   // 如果http状态码正常，则直接返回数据
   if (response) {
-    const status = response.status;
+    // -1000 自己定义，连接错误的status
+    const status = response.status || -1000;
     if (status === 200 || status === 304 || status === 400) {
       // 如果不需要除了data之外的数据，可以直接 return response.data
       return response.data;
@@ -159,8 +160,5 @@ export default function _Axios(url, {
     }
   }
 
-  return axios(defaultConfig)
-    .then((response) => {
-      return checkStatus(response);
-    });
+  return axios(defaultConfig);
 }
