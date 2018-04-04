@@ -1,21 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="renderer" content="webkit">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta content="telephone=no" name="format-detection">
-    <meta content="email=no" name="format-detection">
-    <title>vue-template</title>
-    <link rel="stylesheet" href="assets/dll/vendor.dll.css">
-    <script src="config.js"></script>
+  <meta charset="utf-8">
+  <meta name="renderer" content="webkit">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta content="telephone=no" name="format-detection">
+  <meta content="email=no" name="format-detection">
+  <title>vue-template</title>
+  <link rel="stylesheet" href="assets/dll/vendor.dll.css">
+  <script
+    src="//g.alicdn.com/fdilab/lib3rd/viewport-units-buggyfill/0.6.2/??viewport-units-buggyfill.hacks.min.js,viewport-units-buggyfill.min.js"></script>
+  <script src="config.js"></script>
 </head>
 <body>
-    <div id="app"></div>
-    <script src="assets/dll/vendor.dll.js"></script>
-    <!-- built files will be auto injected -->
+<div id="app"></div>
+<script src="assets/dll/vendor.dll.js"></script>
+<!-- built files will be auto injected -->
+<script>
+  window.onload = function () {
+    window.viewportUnitsBuggyfill.init({
+      hacks: window.viewportUnitsBuggyfillHacks
+    });
+
+    var winDPI = window.devicePixelRatio;
+    var uAgent = window.navigator.userAgent;
+    var screenHeight = window.screen.height;
+    var screenWidth = window.screen.width;
+    var winWidth = window.innerWidth;
+    var winHeight = window.innerHeight;
+    alert(
+      "Windows DPI:" + winDPI +
+      ";\ruAgent:" + uAgent +
+      ";\rScreen Width:" + screenWidth +
+      ";\rScreen Height:" + screenHeight +
+      ";\rWindow Width:" + winWidth +
+      ";\rWindow Height:" + winHeight
+    )
+  }
+</script>
 </body>
 </html>
