@@ -7,7 +7,6 @@ const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.conf')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const HtmlCriticalPlugin = require('html-critical-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
@@ -72,22 +71,6 @@ const webpackConfig = merge(baseWebpackConfig, {
       },
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
       chunksSortMode: 'dependency'
-    }),
-    // This is a webpack wrapper around Addy Osmani's critical library, which helps to inline minimum necessary CSS in HTML documents to prevent stylesheet loading from blocking the Critical Rendering Path.
-    // https://github.com/anthonygore/html-critical-webpack-plugin
-    new HtmlCriticalPlugin({
-      base: path.join(config.directory.root, 'dist/'),
-      src: 'index.html',
-      dest: 'index.html',
-      inline: true,
-      minify: true,
-      extract: true,
-      width: 375,
-      height: 565,
-      timeout: 300000,
-      penthouse: {
-        blockJSRequests: false,
-      }
     }),
     // cache Module Identifiers, keep module.id stable when vendor modules does not change
     new webpack.HashedModuleIdsPlugin(),

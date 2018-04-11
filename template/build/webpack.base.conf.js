@@ -61,11 +61,6 @@ const base = {
         include: [utils.resolve('src/modules'), utils.resolve('node_modules/webpack-dev-server/client')]
       },
       {
-        test: /\.html$/,
-        use: 'happypack/loader?id=happyhtml',
-        include: config.directory.src,
-      },
-      {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
         include: [utils.resolve('src')],
@@ -95,19 +90,11 @@ const base = {
     ]
   },
   plugins: [
-    //开启 happypack 的线程池
-    //原有的 webpack 对 loader 的执行过程从单一进程的形式扩展多进程模式，原本的流程保持不变
+    // 开启 happypack 的线程池
+    // 原有的 webpack 对 loader 的执行过程从单一进程的形式扩展多进程模式，原本的流程保持不变
     new HappyPack({
       id: 'happybabel',
       loaders: ['babel-loader'],
-      threadPool: happyThreadPool,
-      cache: true,
-      verbose: true
-    }),
-
-    new HappyPack({
-      id: 'happyhtml',
-      loaders: ['raw-loader'],
       threadPool: happyThreadPool,
       cache: true,
       verbose: true
