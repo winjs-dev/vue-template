@@ -35,12 +35,11 @@ axios.interceptors.response.use(function (response) {
 });
 
 function checkStatus(response) {
-  // loading
   // 如果http状态码正常，则直接返回数据
   if (response) {
     // -1000 自己定义，连接错误的status
     const status = response.status || -1000;
-    if (status === 200 || status === 304 || status === 400) {
+    if (status === 200 || status === 304) {
       // 如果不需要除了data之外的数据，可以直接 return response.data
       return response.data;
     } else {
