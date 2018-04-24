@@ -39,7 +39,7 @@ function checkStatus(response) {
   if (response) {
     // -1000 自己定义，连接错误的status
     const status = response.status || -1000;
-    if (status === 200 || status === 304) {
+    if (status >= 200 && status < 300 || status === 304) {
       // 如果不需要除了data之外的数据，可以直接 return response.data
       return response.data;
     } else {
@@ -140,22 +140,22 @@ export default function _Axios(url, {
     delete defaultConfig.data;
   } else {
     delete defaultConfig.params;
-  }
 
-  const contentType = headers['Content-Type'];
+    const contentType = headers['Content-Type'];
 
-  if (typeof contentType !== 'undefined') {
-    if (~contentType.indexOf('multipart')) {
-      // 类型 `multipart/form-data;`
-      defaultConfig.data = data;
-    } else if (~contentType.indexOf('json')) {
-      // 类型 `application/json`
-      // 服务器收到的raw body(原始数据) "{name:"jhon",sex:"man"}"（普通字符串）
-      defaultConfig.data = JSON.stringify(data);
-    } else {
-      // 类型 `application/x-www-form-urlencoded`
-      // 服务器收到的raw body(原始数据) name=homeway&key=nokey
-      defaultConfig.data = Qs.stringify(data);
+    if (typeof contentType !== 'undefined') {
+      if (~contentType.indexOf('multipart')) {
+        // 类型 `multipart/form-data;`
+        defaultConfig.data = data;
+      } else if (~contentType.indexOf('json')) {
+        // 类型 `application/json`
+        // 服务器收到的raw body(原始数据) "{name:"jhon",sex:"man"}"（普通字符串）
+        defaultConfig.data = JSON.stringify(data);
+      } else {
+        // 类型 `application/x-www-form-urlencoded`
+        // 服务器收到的raw body(原始数据) name=homeway&key=nokey
+        defaultConfig.data = Qs.stringify(data);
+      }
     }
   }
 
