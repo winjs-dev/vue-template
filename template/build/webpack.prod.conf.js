@@ -31,6 +31,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       'process.env': require('./config/prod.env')
     }),
     new UglifyJsPlugin({
+      cache: true,
       uglifyOptions: {
         compress: {
           warnings: false,
