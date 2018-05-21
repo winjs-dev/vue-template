@@ -39,7 +39,7 @@ function checkStatus(response) {
   if (response) {
     // -1000 自己定义，连接错误的status
     const status = response.status || -1000;
-    if (status >= 200 && status < 300 || status === 304) {
+    if ((status >= 200 && status < 300) || status === 304) {
       // 如果不需要除了data之外的数据，可以直接 return response.data
       return response.data;
     } else {
