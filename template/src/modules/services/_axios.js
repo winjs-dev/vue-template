@@ -117,11 +117,9 @@ export default function _Axios(url, {
   const baseURL = autoMatchBaseUrl(prefix);
 
   headers = Object.assign(method === 'get' ? {
-    'X-Requested-With': 'XMLHttpRequest',
     'Accept': 'application/json',
     'Content-Type': 'application/json; charset=UTF-8'
   } : {
-    'X-Requested-With': 'XMLHttpRequest',
     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
   }, headers);
 
