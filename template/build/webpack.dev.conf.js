@@ -1,14 +1,19 @@
 'use strict'
 const path = require('path')
+const fs = require('fs')
 const utils = require('./utils')
 const webpack = require('webpack')
 const config = require('./config')
+const pkg = require('../package.json')
 const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.conf')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 
+const useYarn = fs.existsSync(`${config.directory.root}/yarn.lock`)
+const protocol = process.env.HTTPS === 'true' ? 'https' : 'http'
+const appName = pkg.name
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
 
@@ -78,10 +83,13 @@ module.exports = new Promise((resolve, reject) => {
       // add port to devServer config
       devWebpackConfig.devServer.port = port
 
+      const urls = utils.prepareUrls(protocol, devWebpackConfig.devServer.host, port);
       // Add FriendlyErrorsPlugin
       devWebpackConfig.plugins.push(new FriendlyErrorsPlugin({
         compilationSuccessInfo: {
-          messages: [`Your application is running here: http://${devWebpackConfig.devServer.host}:${port}`],
+          messages: [
+            utils.printInstructions(appName, urls, useYarn)
+          ]
         },
         onErrors: config.dev.notifyOnErrors
           ? utils.createNotifierCallback()

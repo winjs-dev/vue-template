@@ -13,7 +13,6 @@ const SpritesmithPlugin = require('webpack-spritesmith')
 
 // 需要dll打包进来的文件
 const vendor = [
-  require.resolve('./polyfills'),
   'vue',
   'vue-router',
   'lib-flexible',
