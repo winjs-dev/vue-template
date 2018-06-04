@@ -1,5 +1,5 @@
 # vue-template
-基于vue创建的模板
+通过语法动态导入代码分割的vue项目模板。
 
 ## Usage
 
