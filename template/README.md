@@ -19,6 +19,9 @@ npm run build
 
 # build for production and view the bundle analyzer report
 npm run build --report
+
+# build for production and start a server in local to preview
+npm run build --preview
 ```
 
 ## Features
