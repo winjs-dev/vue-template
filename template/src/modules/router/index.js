@@ -12,13 +12,13 @@ import Router from 'vue-router';
 
 Vue.use(Router);
 
+const Hello = () => import(/* webpackChunkName: "Hello" */ '@views/hello/index.vue');
+
 const routes = [
   {
     path: '/',
     name: 'hello',
-    component(resolve) {
-      require(['@views/hello'], resolve);
-    }
+    component: Hello
   },
   {
     path: '*', redirect: '/'

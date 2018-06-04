@@ -1,8 +1,8 @@
 {
-  "name": "vue-template",
+  "name": "vue-template-code-splitting",
   "version": "2.1.8",
   "license": "MIT",
-  "description": "A vue template.",
+  "description": "A vue template with code splitting by syntax dynamic import.",
   "scripts": {
     "release": "bash release.sh"
   },
