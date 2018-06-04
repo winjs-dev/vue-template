@@ -35,6 +35,12 @@ module.exports = {
     // Set to `true` or `false` to always turn it on or off
     bundleAnalyzerReport: process.env.npm_config_report,
 
+    // Run the build command with an extra argument to
+    // Start a server in local to preview after build finishes:
+    // `npm run build --preview`
+    // Set to `true` or `false` to always turn it on or off
+    localBrowsing: process.env.npm_config_preview,
+
     // Imagemin
     // Set to `true` to turn it on
     // Before setting to `true`, make sure to:
