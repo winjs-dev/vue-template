@@ -62,6 +62,19 @@ exports.runLintFix = function runLintFix(cwd, data, color) {
   return Promise.resolve()
 }
 
+exports.runDll = function runDll(cwd, color) {
+  const executable = 'npm'
+  console.log(
+    `\n\n${color(
+      'Running dll command to optimize package performance...'
+    )}`
+  )
+  console.log('# ========================\n')
+  return runCommand(executable, ['run dll'], {
+    cwd,
+  })
+}
+
 /**
  * Prints the final message with instructions of necessary next steps.
  * @param {Object} data Data from questionnaire.

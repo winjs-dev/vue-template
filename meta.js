@@ -3,6 +3,7 @@ const path = require('path')
 const {
   sortDependencies,
   installDependencies,
+  runDll,
   runLintFix,
   printMessage,
 } = require('./utils')
@@ -62,6 +63,10 @@ module.exports = {
           short: 'no',
         }
       ]
+    },
+    autoRunDll: {
+      type: 'confirm',
+      message: 'Whether to execute the npm run dll immediately?'
     }
   },
   filters: {
@@ -77,6 +82,9 @@ module.exports = {
 
     if (data.autoInstall) {
       installDependencies(cwd, data.autoInstall, green)
+        .then(() => {
+          return runDll(cwd, green)      ``
+        })
         .then(() => {
           return runLintFix(cwd, data, green)
         })
