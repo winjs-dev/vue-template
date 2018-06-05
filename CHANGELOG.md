@@ -17,11 +17,6 @@ All notable changes to this project will be documented in this file. See [standa
 * Refactor project template ([8ff2c28](https://github.com/cloud-templates/vue-template/commit/8ff2c28))
 * run dll ([1d0a5a5](https://github.com/cloud-templates/vue-template/commit/1d0a5a5))
 
-
-
-# Change Log
----
-
 ## 2.0.2
  
 `2017-11-20`

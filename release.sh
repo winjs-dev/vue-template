@@ -1,19 +1,5 @@
 #!/bin/bash
 
-set -e
-echo "Enter release version: "
-read VERSION
+standard-version
 
-read -p "Releasing $VERSION - are you sure (y/n)" -n 1 -r
-echo #
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-  echo "Releasing $VERSION ..."
-
-  VERSION=$VERSION
-  git add -A
-  git commit -m "[build] $VERSION"
-  npm version $VERSION --message "[release] $VERSION"
-
-  git push
-fi
+git push --follow-tags origin master
