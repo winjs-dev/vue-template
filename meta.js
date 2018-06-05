@@ -3,7 +3,7 @@ const path = require('path')
 const {
   sortDependencies,
   installDependencies,
-  runLintFix,
+  runDll,
   printMessage,
 } = require('./utils')
 const pkg = require('./package.json')
@@ -39,7 +39,7 @@ module.exports = {
     },
     cssSprite: {
       type: 'confirm',
-      message: 'Install webapck-spritesmith?'
+      message: 'Install webpack-spritesmith?'
     },
     autoInstall: {
       type: 'list',
@@ -62,6 +62,10 @@ module.exports = {
           short: 'no',
         }
       ]
+    },
+    autoRunDll: {
+      type: 'confirm',
+      message: 'Whether to execute the `npm run dll` immediately?'
     }
   },
   filters: {
@@ -78,7 +82,7 @@ module.exports = {
     if (data.autoInstall) {
       installDependencies(cwd, data.autoInstall, green)
         .then(() => {
-          return runLintFix(cwd, data, green)
+          return runDll(cwd, data, green)
         })
         .then(() => {
           printMessage(data, green)

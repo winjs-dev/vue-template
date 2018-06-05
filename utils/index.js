@@ -2,7 +2,6 @@
 const path = require('path')
 const fs = require('fs')
 const spawn = require('child_process').spawn
-
 const lintStyles = ['standard', 'airbnb']
 
 /**
@@ -63,6 +62,27 @@ exports.runLintFix = function runLintFix(cwd, data, color) {
 }
 
 /**
+ * Runs `npm run dll` in the project directory
+ * @param {string} cwd Path of the created project directory
+ * @param {object} data Data from questionnaire
+ */
+exports.runDll = function runDll(cwd, data, color) {
+  if (data.autoRunDll) {
+    const executable = 'npm'
+    console.log(
+      `\n\n${color(
+        'Running dll command to optimize package performance...'
+      )}`
+    )
+    console.log('# ========================\n')
+    return runCommand(executable, ['run dll'], {
+      cwd,
+    })
+  }
+  return Promise.resolve()
+}
+
+/**
  * Prints the final message with instructions of necessary next steps.
  * @param {Object} data Data from questionnaire.
  */
@@ -76,7 +96,7 @@ To get started:
   ${yellow(
     `${data.inPlace ? '' : `cd ${data.destDirName}\n  `}${installMsg(
       data
-    )}${lintMsg(data)}npm run dll（公共静态资源）\n  npm run dev（开发专用）\n  npm run build（线上专用`
+    )}${lintMsg(data)}${runDllMsg(data)}npm run dev（开发专用）\n  npm run build（线上专用`
   )}
   
 Documentation can be found at https://vuejs-templates.github.io/webpack
@@ -104,6 +124,15 @@ function lintMsg(data) {
  */
 function installMsg(data) {
   return !data.autoInstall ? 'npm install (or if using yarn: yarn)\n  ' : ''
+}
+
+/**
+ * If the user will have to run `npm run dll`, it returns a string
+ * containing the instruction for this step.
+ * @param {Object} data Data from the questionnaire
+ */
+function runDllMsg(data) {
+  return !data.autoRunDll ? 'npm run dll（优化打包性能,资源文件如下：vue,vue-router,normalize.css）\n  ' : ''
 }
 
 /**
