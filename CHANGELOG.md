@@ -1,4 +1,25 @@
 # Change Log
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+<a name="2.2.0"></a>
+# [2.2.0](https://github.com/cloud-templates/vue-template/compare/v2.1.8...v2.2.0) (2018-06-05)
+
+
+### Bug Fixes
+
+* Fix build.js ([e94c4b9](https://github.com/cloud-templates/vue-template/commit/e94c4b9))
+* Fix meta.js ([5b63d9f](https://github.com/cloud-templates/vue-template/commit/5b63d9f))
+
+
+### Features
+
+* Refactor project template ([8ff2c28](https://github.com/cloud-templates/vue-template/commit/8ff2c28))
+* run dll ([1d0a5a5](https://github.com/cloud-templates/vue-template/commit/1d0a5a5))
+
+
+
+# Change Log
 ---
 
 ## 2.0.2
