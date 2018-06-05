@@ -15,7 +15,6 @@ const SpritesmithPlugin = require('webpack-spritesmith')
 const vendor = [
   'vue',
   'vue-router',
-  'lib-flexible',
   'normalize.css'
 ]
 

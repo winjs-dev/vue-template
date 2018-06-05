@@ -11,7 +11,7 @@ const createLintingRule = () => ({
   test: /\.(js|vue)$/,
   loader: 'eslint-loader',
   enforce: 'pre',
-  include: [utils.resolve('src/modules')],
+  include: [utils.resolve('src')],
   options: {
     formatter: require('eslint-friendly-formatter'),
     emitWarning: !config.dev.showEslintErrorsInOverlay
@@ -29,18 +29,21 @@ const base = {
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js',
+      // 目录别名
       '@': utils.resolve('src'),
+      '@static': utils.resolve('static'),
       '@assets': utils.resolve('src/assets'),
       '@less': utils.resolve('src/assets/less'),
       '@js': utils.resolve('src/assets/js'),
-      '@components': utils.resolve('src/modules/components'),
-      '@mixins': utils.resolve('src/modules/mixins'),
-      '@views': utils.resolve('src/modules/views'),
+      '@components': utils.resolve('src/components'),
+      '@mixins': utils.resolve('src/mixins'),
+      '@filters': utils.resolve('src/filters'),
+      '@store': utils.resolve('src/store'),
+      '@views': utils.resolve('src/views'),
 
-      // 项目公用
-      'services': utils.resolve('src/modules/services'),
-      'lang': utils.resolve('src/modules/lang/zh-cn'),
+      // 文件别名
+      'vue$': 'vue/dist/vue.esm.js',
+      'services': utils.resolve('src/services'),
       'variable': utils.resolve('src/assets/less/variable.less'),
       'utils': utils.resolve('node_modules/cloud-utils/dist/cloud-utils.esm'),
       'mixins': utils.resolve('node_modules/magicless/magicless.less')
@@ -104,8 +107,10 @@ const base = {
 
 if (process.env.NODE_ENV !== 'dll') {
   base.entry = {
-    app: config.directory.modules + '/main.js'
+    app: config.directory.src + '/main.js'
   }
+
+  utils.writeFileConfigLocal();
 }
 
 module.exports = base;

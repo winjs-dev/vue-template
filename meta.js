@@ -66,7 +66,7 @@ module.exports = {
     },
     autoRunDll: {
       type: 'confirm',
-      message: 'Whether to execute the npm run dll immediately?'
+      message: 'Whether to execute the `npm run dll` immediately?'
     }
   },
   filters: {
@@ -83,7 +83,7 @@ module.exports = {
     if (data.autoInstall) {
       installDependencies(cwd, data.autoInstall, green)
         .then(() => {
-          return runDll(cwd, green)      ``
+          return runDll(cwd, data, green)      ``
         })
         .then(() => {
           return runLintFix(cwd, data, green)

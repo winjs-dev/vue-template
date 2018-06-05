@@ -1,16 +1,16 @@
 /**
  *
- * @authors liwb (you@example.org)
- * @date    2017/11/13 11:13
- * @version $ https://github.com/mzabriskie/axios
+ * @authors liwb (lwbhtml@gmail.com)
+ * @date    2018/6/5 上午10:43
+ * @description https://github.com/mzabriskie/axios
  * 安卓4.4.3一下的手机还是不支持Promise的,需要引入npm install babel-polyfill和npm install babel-runtime，在入口文件上加上即可
  * import 'babel-polyfill';
  */
 
-/* name module */
 import Qs from 'qs';
 import axios from 'axios';
 import autoMatchBaseUrl from './autoMatchBaseUrl';
+import {TIMEOUT, HOME_PREFIX} from '../constant';
 
 // 添加一个请求拦截器 （于transformRequest之前处理）
 axios.interceptors.request.use(function (config) {
@@ -104,12 +104,11 @@ function checkStatus(response) {
  * @param headers
  * @param dataType
  * @returns {Promise.<T>}
- * @private
  */
-export default function _Axios(url, {
+export default function request(url, {
   method = 'post',
-  timeout = 10000,
-  prefix = window.CT.OPEN_PREFIX,
+  timeout = TIMEOUT,
+  prefix = HOME_PREFIX,
   data = {},
   headers = {},
   dataType = 'json'

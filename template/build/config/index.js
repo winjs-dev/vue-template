@@ -1,5 +1,5 @@
 'use strict'
-// Template version: {{ template_version }}
+// Template version: 2.1.8
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 const path = require('path')
@@ -12,8 +12,8 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../../', 'dist'),
     assetsSubDirectory: 'assets',
+    staticSubDirectory: 'static',
     assetsPublicPath: '/',
-
     /**
      * Source Maps
      */
@@ -67,6 +67,7 @@ module.exports = {
     // path
     assetsSubDirectory: 'assets',
     assetsPublicPath: '/',
+    staticSubDirectory: 'static',
     proxyTable: {},
 
     /**
@@ -92,8 +93,7 @@ module.exports = {
     root: path.resolve(__dirname, '../../'),
     src: path.resolve(__dirname, '../../', 'src'),
     assets: path.resolve(__dirname, '../../src', 'assets'),
-    dll: path.resolve(__dirname, '../../src/assets', 'dll'),
-    modules: path.resolve(__dirname, '../../src', 'modules'),
+    dll: path.resolve(__dirname, '../../static'),
     nodeModules: path.resolve(__dirname, '../../', 'node_modules'),
   }
 }

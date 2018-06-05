@@ -1,6 +1,9 @@
 'use strict'
+const {formatDate} = require('cloud-utils')
+const fs = require('fs')
 const path = require('path')
 const config = require('./config')
+const nodeConfig = require('config')
 const address = require('address')
 const chalk = require('chalk')
 const url = require('url')
@@ -33,7 +36,7 @@ exports.cssLoaders = function (options) {
   }
 
   // generate loader string to be used with extract text plugin
-  function generateLoaders (loader, loaderOptions) {
+  function generateLoaders(loader, loaderOptions) {
     const loaders = options.usePostCSS ? [cssLoader, postcssLoader] : [cssLoader]
     if (loader) {
       loaders.push({
@@ -61,7 +64,7 @@ exports.cssLoaders = function (options) {
     css: generateLoaders(),
     postcss: generateLoaders(),
     less: generateLoaders('less'),
-    sass: generateLoaders('sass', { indentedSyntax: true }),
+    sass: generateLoaders('sass', {indentedSyntax: true}),
     scss: generateLoaders('sass'),
     stylus: generateLoaders('stylus'),
     styl: generateLoaders('stylus')
@@ -89,9 +92,10 @@ exports.createNotifierCallback = function () {
     if (severity !== 'error') {
       return
     }
+    console.log(errors);
     const error = errors[0]
 
-    const filename = error.file.split('!').pop()
+    const filename = (typeof error.file === 'string') && error.file.split('!').pop()
     notifier.notify({
       title: pkg.name,
       message: severity + ': ' + error.name,
@@ -101,12 +105,12 @@ exports.createNotifierCallback = function () {
   }
 }
 
-exports.resolve = function(dir) {
+exports.resolve = function (dir) {
   return path.join(__dirname, '..', dir)
 }
 
 // is prodution
-exports.isProduction = function() {
+exports.isProduction = function () {
   return process.env.NODE_ENV === 'production'
 }
 
@@ -178,4 +182,23 @@ exports.printInstructions = function (appName, urls, useYarn) {
     ${info}
     Note that the development build is not optimized. \n
     To create a production build, use ${chalk.cyan(`${useYarn ? 'yarn' : 'npm run'} build`)}. \n`
+}
+
+// 读取node-config配置文件，生成config.local.js
+exports.writeFileConfigLocal = function () {
+  const data = `
+/**
+ *
+ * @authors ${pkg.author}
+ * @date    ${formatDate(Date.now())}
+ * @description 根据不同环境配置对应的服务地址及变量，这里只放置必须要手动修改的变量
+ */
+ 
+window.LOCAL_CONFIG = ${JSON.stringify(nodeConfig, null, 2)}`;
+
+  fs.writeFileSync(`static/config.local.js`, data, 'utf-8', (err) => {
+    console.log(data, err);
+    if (err) throw err;
+    console.log(`static/config.local.js has been generated`);
+  });
 }

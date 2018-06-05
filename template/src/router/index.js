@@ -1,24 +1,22 @@
 /**
  *
- * @authors liwb (you@example.org)
- * @date    2016/10/24 17:33
- * @version $ 路由
+ * @authors liwb (lwbhtml@gmail.com)
+ * @date    2018/6/5 上午10:43
+ * @description 定义路由模块
  */
-
-/* name module */
 
 import Vue from 'vue';
 import Router from 'vue-router';
 
 Vue.use(Router);
 
+const Hello = () => import(/* webpackChunkName: "hello" */ '@views/hello');
+
 const routes = [
   {
     path: '/',
     name: 'hello',
-    component(resolve) {
-      require(['@views/hello'], resolve);
-    }
+    component: Hello
   },
   {
     path: '*', redirect: '/'
@@ -28,10 +26,6 @@ const routes = [
 const router = new Router({
   mode: 'hash',
   routes
-});
-
-router.beforeEach((to, from, next) => {
-  next();
 });
 
 export default router;

@@ -23,7 +23,7 @@ const webpackConfig = merge(baseWebpackConfig, {
   output: {
     path: config.build.assetsRoot,
     filename: '[name].[chunkhash].js',
-    chunkFilename: '[id].[chunkhash].js'
+    chunkFilename: '[name].[chunkhash].js'
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
@@ -61,7 +61,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     // see https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: config.build.index,
-      template: path.join(config.directory.root, 'src/index.html'),
+      template: path.join(config.directory.root, 'index.html'),
       inject: true,
       minify: {
         removeComments: true,
@@ -118,16 +118,9 @@ const webpackConfig = merge(baseWebpackConfig, {
     // copy custom static assets
     new CopyWebpackPlugin([
       {
-        from: config.directory.dll,
-        to: 'assets/dll'
-      },
-      {
-        from: path.resolve(config.directory.src, 'config.js'),
-        to: 'config.js'
-      },
-      {
-        from: path.resolve(config.directory.assets, 'images/copyfiles'),
-        to: 'assets/images/copyfiles'
+        from: path.resolve(__dirname, '../static'),
+        to: config.build.staticSubDirectory,
+        ignore: ['.*']
       }
     ])
   ]
