@@ -55,7 +55,7 @@ rm(config.build.assetsRoot, err => {
       '  Opening index.html over file:// won\'t work.\n'
     ))
 
-    if(congfig.build.localBrowsing){
+    if(config.build.localBrowsing){
       server.start({
         port: 8815,
         directory: './dist',
