@@ -2,4 +2,4 @@
 
 standard-version
 
-git push --follow-tags origin master
+git push --follow-tags origin develop
