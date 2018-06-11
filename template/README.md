@@ -1,6 +1,6 @@
 # vue-test
 
-> A PWA Vue.js project
+> A Vue.js PWA project
 
 ## Build Setup
 
