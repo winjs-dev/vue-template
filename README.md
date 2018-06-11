@@ -1,5 +1,5 @@
-# vue-template
-基于vue创建的模板
+# vue-pwa-template
+基于vue创建的PWA应用程序模板
 
 ## Usage
 
