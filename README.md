@@ -7,8 +7,8 @@ This is a project template for [vue-cli](https://github.com/vuejs/vue-cli). **It
 
 ``` bash
 $ npm install -g vue-cli
-$ vue init cloud-templates/vue-template my-project
-$ cd my-project
+$ vue init cloud-templates/vue-template#pwa my-pwa-project
+$ cd my-pwa-project
 $ npm install or yarn
 $ npm run dll
 $ npm run dev

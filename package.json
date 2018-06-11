@@ -1,8 +1,8 @@
 {
-  "name": "vue-template",
-  "version": "2.2.2",
+  "name": "vue-pwa-template",
+  "version": "1.0.0",
   "license": "MIT",
-  "description": "A vue template.",
+  "description": "A vue pwa template.",
   "scripts": {
     "release": "bash release.sh"
   },

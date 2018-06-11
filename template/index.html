@@ -1,24 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="renderer" content="webkit">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta content="telephone=no" name="format-detection">
-    <meta content="email=no" name="format-detection">
-    <title>vue-template</title>
-    <!--preload-->
-    <link rel="preload" href="static/vendor.dll.css" as="style">
-    <link rel="preload" href="static/vendor.dll.js" as="script">
-    <link rel="stylesheet" href="static/vendor.dll.css">
-    <script src="static/config.local.js"></script>
+  <meta charset="utf-8">
+  <meta name="renderer" content="webkit">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <title>{{ name }}</title>
+  <!-- Add to home screen for Android and modern mobile browsers -->
+  <link rel="manifest" href="<%= htmlWebpackPlugin.files.publicPath %>static/manifest.json">
+  <meta name="theme-color" content="#dba87">
+  <!-- Add to home screen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="{{name}}">
+  <meta content="telephone=no" name="format-detection">
+  <meta content="email=no" name="format-detection">
+  <!-- Add to home screen for Windows -->
+  <meta name="msapplication-TileImage"
+        content="<%= htmlWebpackPlugin.files.publicPath %>static/msapplication-icon-144x144.png">
+  <meta name="msapplication-TileColor" content="#000000">
+  <link rel="preload" href="<%= htmlWebpackPlugin.options.vendorDll.css %>" as="style">
+  <link rel="preload" href="<%= htmlWebpackPlugin.options.vendorDll.js %>" as="script">
+  <link rel="stylesheet" href="<%= htmlWebpackPlugin.options.vendorDll.css %>">
+  <script src="static/config.local.js"></script>
+  <% for (var chunk of webpack.chunks) {
+  for (var file of chunk.files) {
+  if (file.match(/\.(js|css)$/)) { %>
+  <link rel="<%= chunk.initial?'preload':'prefetch' %>" href="<%= htmlWebpackPlugin.files.publicPath + file %>"
+        as="<%= file.match(/\.css$/)?'style':'script' %>">
+  <% }}} %>
 </head>
 <body>
-    <div id="app"></div>
-    <script src="static/vendor.dll.js"></script>
-    <!-- built files will be auto injected -->
+<noscript>
+  This is your fallback content in case JavaScript fails to load.
+</noscript>
+<div id="app"></div>
+<script src="<%= htmlWebpackPlugin.options.vendorDll.js %>"></script>
+<!-- Todo: only include in production -->
+<%= htmlWebpackPlugin.options.serviceWorkerLoader %>
+<!-- built files will be auto injected -->
 </body>
 </html>

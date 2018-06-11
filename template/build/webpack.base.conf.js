@@ -98,9 +98,7 @@ const base = {
     new HappyPack({
       id: 'happybabel',
       loaders: ['babel-loader'],
-      threadPool: happyThreadPool,
-      cache: true,
-      verbose: true
+      threadPool: happyThreadPool
     })
   ]
 }

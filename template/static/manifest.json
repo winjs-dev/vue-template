@@ -1,0 +1,15 @@
+{
+  "name": "{{ name }}",
+  "short_name": "{{#if short_name }}{{ short_name }}{{else}}{{ name }}{{/if}}",
+  "icons": [
+    {
+      "src": "/static/msapplication-icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#4dba87"
+}

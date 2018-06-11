@@ -22,7 +22,7 @@
   export default {
     data() {
       return {
-        msg: 'Welcome to Your Vue.js App',
+        msg: 'Welcome to Your Vue.js PWA App',
         message: '现在时间是：' + formatDate(Date.now()),
         start: false
       }

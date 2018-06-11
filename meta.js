@@ -27,6 +27,11 @@ module.exports = {
       required: true,
       message: 'Project name'
     },
+    shortName: {
+      type: 'string',
+      required: false,
+      message: 'Project short name: fewer than 12 characters to not be truncated on homescreens (default: same as name)'
+    },
     description: {
       type: 'string',
       required: false,
@@ -65,13 +70,16 @@ module.exports = {
     },
     autoRunDll: {
       type: 'confirm',
-      message: 'Whether to execute the `npm run dll` immediately?'
+      message: 'Whether to execute the `npm run dll` immediately? (recommended)'
     }
   },
   filters: {
     'src/assets/less/_sprite.css': 'cssSprite',
     'src/assets/images/sprites/*': 'cssSprite'
   },
+  skipInterpolation: [ // 过滤掉不用解析的文件，如替换{{}}语法
+    'template/**/*'
+  ],
   complete: function (data, {chalk}) {
     const green = chalk.green
 
