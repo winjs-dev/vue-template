@@ -59,7 +59,9 @@ module.exports = {
     'semi': [0, 'always'],
     // 强制在 function的左括号之前使用一致的空格
     'space-before-function-paren': [0, 'always'],
-
+    // 禁用行尾空白 (no-trailing-spaces)
+    'no-trailing-spaces': 2,
+    
     //////////////
     // 最佳实践 //
     //////////////
