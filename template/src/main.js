@@ -12,6 +12,7 @@ Vue.config.productionTip = process.env.NODE_ENV === 'production';
 new Vue({
   el: '#app',
   router,
-  template: '<App/>',
-  components: {App}
+  // use Runtime-only
+  // https://vuejs.org/v2/guide/installation.html
+  render: (h) => h(App)
 });
