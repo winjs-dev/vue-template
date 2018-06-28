@@ -25,6 +25,6 @@ Object.defineProperty(Vue.prototype, '$services', {value: services});
 new Vue({
   el: '#app',
   router,
-  template: '<App/>',
-  components: {App}
+  // use Runtime-only
+  render: (h) => h(App)
 });

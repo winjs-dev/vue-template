@@ -29,7 +29,6 @@ const base = {
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js',
       '@': utils.resolve('src'),
       '@assets': utils.resolve('src/assets'),
       '@less': utils.resolve('src/assets/less'),
