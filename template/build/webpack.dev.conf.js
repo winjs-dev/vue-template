@@ -27,6 +27,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 
   // these devServer options should be customized in /config/index.js
   devServer: {
+    // since we use CopyWebpackPlugin.
     contentBase: false,
     clientLogLevel: 'warning',
     historyApiFallback: {
