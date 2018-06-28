@@ -42,7 +42,6 @@ const base = {
       '@views': utils.resolve('src/views'),
 
       // 文件别名
-      'vue$': 'vue/dist/vue.esm.js',
       'services': utils.resolve('src/services'),
       'variable': utils.resolve('src/assets/less/variable.less'),
       'utils': utils.resolve('node_modules/cloud-utils/dist/cloud-utils.esm'),
