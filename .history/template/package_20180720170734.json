@@ -9,7 +9,6 @@
     "start": "npm run dev",
     "dll": "node build/dll-build.js",
     "build": "node build/build.js",
-    "zip": "node build/zip.js",
     "lint": "eslint --fix --ext .js,.vue src/modules"
   },
   "dependencies": {
@@ -23,7 +22,6 @@
   },
   "devDependencies": {
     "address": "^1.0.3",
-    "archiver": "^2.1.1",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
