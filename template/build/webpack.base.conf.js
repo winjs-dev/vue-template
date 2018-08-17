@@ -5,6 +5,7 @@ const config = require('./config')
 const os = require('os')
 const HappyPack = require('happypack')
 const happyThreadPool = HappyPack.ThreadPool({size: os.cpus().length})
+const { VueLoaderPlugin } = require('vue-loader')
 const vueLoaderConfig = require('./vue-loader.conf')
 
 const createLintingRule = () => ({
@@ -29,17 +30,20 @@ const base = {
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
+      // 目录别名
       '@': utils.resolve('src'),
+      '@static': utils.resolve('static'),
       '@assets': utils.resolve('src/assets'),
       '@less': utils.resolve('src/assets/less'),
       '@js': utils.resolve('src/assets/js'),
-      '@components': utils.resolve('src/modules/components'),
-      '@mixins': utils.resolve('src/modules/mixins'),
-      '@views': utils.resolve('src/modules/views'),
+      '@components': utils.resolve('src/components'),
+      '@mixins': utils.resolve('src/mixins'),
+      '@filters': utils.resolve('src/filters'),
+      '@store': utils.resolve('src/store'),
+      '@views': utils.resolve('src/views'),
 
-      // 项目公用
-      'services': utils.resolve('src/modules/services'),
-      'lang': utils.resolve('src/modules/lang/zh-cn'),
+      // 文件别名
+      'services': utils.resolve('src/services'),
       'variable': utils.resolve('src/assets/less/variable.less'),
       'utils': utils.resolve('node_modules/cloud-utils/dist/cloud-utils.esm'),
       'mixins': utils.resolve('node_modules/magicless/magicless.less')
@@ -93,18 +97,39 @@ const base = {
     // 原有的 webpack 对 loader 的执行过程从单一进程的形式扩展多进程模式，原本的流程保持不变
     new HappyPack({
       id: 'happybabel',
-      loaders: ['babel-loader'],
+      loaders: [
+        {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true
+          }
+        }
+      ],
       threadPool: happyThreadPool,
-      cache: true,
       verbose: true
-    })
-  ]
+    }),
+    new VueLoaderPlugin()
+  ],
+  node: {
+    // prevent webpack from injecting useless setImmediate polyfill because Vue
+    // source contains it (although only uses it if it's native).
+    setImmediate: false,
+    // prevent webpack from injecting mocks to Node native modules
+    // that does not make sense for the client
+    dgram: 'empty',
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty',
+    child_process: 'empty'
+  }
 }
 
 if (process.env.NODE_ENV !== 'dll') {
   base.entry = {
     app: config.directory.modules + '/main.js'
   }
+
+  utils.writeFileConfigLocal();
 }
 
 module.exports = base;

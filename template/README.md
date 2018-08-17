@@ -1,4 +1,4 @@
-# vue-test
+# {{ name }}
 
 > A Vue.js project
 
@@ -20,12 +20,16 @@ npm run build
 # build for production and view the bundle analyzer report
 npm run build --report
 
+# build for production and generate the bundle analyzer report in dist folder
+npm run build --generate_report
+
 # build for production and start a server in local to preview
 npm run build --preview
+
 ```
 
 ## Features
 
 - Equip with Vue.js, Vue-Router, Axios, ES6 & Babel
-- Build with Webpack 3.X & Vue Loader
+- Build with Webpack 4.X & Vue Loader
 - Stylesheets in Less

@@ -1,12 +1,11 @@
 /**
  *
- * @authors liwb (you@example.org)
- * @date    2016/10/24 17:34
- * @version $ IIFE
+ * @authors liwb (lwbhtml@gmail.com)
+ * @date    2018/6/5 上午10:43
+ * @description 定义过滤器模块
  */
 
-/* name module */
-
+import Vue from 'vue';
 import {formatDate} from 'utils';
 
 /**
@@ -18,3 +17,12 @@ import {formatDate} from 'utils';
 export function formatTime(timeStamp, fmt) {
   return formatDate(timeStamp, fmt);
 }
+
+// register global utility filters.
+const filters = {
+  formatDate
+};
+
+Object.keys(filters).forEach((key) => {
+  Vue.filter(key, filters[key]);
+});

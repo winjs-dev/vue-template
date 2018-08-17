@@ -5,8 +5,9 @@ const webpack = require('webpack')
 const config = require('./config')
 const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.conf')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 {{#cssSprite}}
 const SpritesmithPlugin = require('webpack-spritesmith')
 {{/cssSprite}}
@@ -23,6 +24,7 @@ const webpackConfig = merge(baseWebpackConfig, {
   entry: {
     vendor
   },
+  mode: 'production',
   module: {
     rules: utils.styleLoaders({
       sourceMap: config.build.productionSourceMap,
@@ -37,6 +39,30 @@ const webpackConfig = merge(baseWebpackConfig, {
     // 当前Dll的所有内容都会存放在这个参数指定变量名的一个全局变量下，注意与DllPlugin的name参数保持一致
     library: '[name]_library',
   },
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          compress: {
+            warnings: false,
+            drop_console: true
+          },
+          mangle: {
+            safari10: true
+          },
+          output: {
+            comments: false
+          }
+        },
+        sourceMap: config.build.productionSourceMap,
+        cache: true,
+        parallel: true
+      }),
+      // Compress extracted CSS. We are using this plugin so that possible
+      // duplicated CSS from different components can be deduped.
+      new OptimizeCSSAssetsPlugin({})
+    ]
+  },
   plugins: [
     new webpack.DllPlugin({
       // path 定义 vendors 文件生成的位置
@@ -49,27 +75,9 @@ const webpackConfig = merge(baseWebpackConfig, {
       // 指定一个路径作为上下文环境，需要与DllReferencePlugin的context参数保持一致，建议统一设置为项目根目录
       context: config.directory.root
     }),
-
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-        drop_console: true
-      },
-      sourceMap: config.build.productionSourceMap,
-      parallel: true
-    }),
-    // enable scope hoisting
-    new webpack.optimize.ModuleConcatenationPlugin(),
     // extract css into its own file
-    new ExtractTextPlugin({
+    new MiniCssExtractPlugin({
       filename: '[name].dll.css'
-    }),
-    // Compress extracted CSS. We are using this plugin so that possible
-    // duplicated CSS from different components can be deduped.
-    new OptimizeCSSPlugin({
-      cssProcessorOptions: {
-        safe: true
-      }
     }),
     {{#cssSprite}}
     // sprites图片精灵

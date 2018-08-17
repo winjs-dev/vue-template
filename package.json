@@ -1,12 +1,43 @@
 {
   "name": "vue-template",
-  "version": "2.1.9",
+  "version": "3.0.0",
   "license": "MIT",
   "description": "A vue template.",
   "scripts": {
-    "release": "bash release.sh"
+    "release": "bash release.sh",
+    "lint": "eslint --ext .js,.vue template/src",
+    "lint:fix": "eslint --fix .js,. template/src",
+    "lint:msg": "validate-commit-msg",
+    "commit": "git cz",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 1",
+    "precommit": "npm run lint",
+    "commitmsg": "npm run lint:msg"
   },
   "devDependencies": {
-    "vue-cli": "^2.8.1"
+    "vue-cli": "^2.8.1",
+    "commitizen": "^2.8.2",
+    "conventional-changelog-cli": "latest",
+    "cz-conventional-changelog": "^2.1.0",
+    "validate-commit-msg": "^2.6.1"
+  },
+  "config": {
+    "validate-commit-msg": {
+      "types": [
+        "feat",
+        "fix",
+        "docs",
+        "style",
+        "refactor",
+        "perf",
+        "test",
+        "chore",
+        "revert"
+      ],
+      "warnOnFail": false,
+      "maxSubjectLength": 100
+    },
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
   }
 }

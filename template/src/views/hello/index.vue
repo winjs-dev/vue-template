@@ -2,7 +2,7 @@
   <div class="page page-hello">
     <div class="page-content">
       <!-- 静态资源路径写法事例 -->
-      <img src="~@assets/images/copyfiles/logo.png">
+      <img src="~@assets/images/logo.png">
       <h1 v-text="msg"></h1>
       <h2 v-text="message"></h2>
       <div class="demo">
@@ -79,31 +79,17 @@
   // 工具类
   import {formatDate} from 'utils';
   // 组件
-  import SendCode from '@components/SendCode';
+  import {SendCode} from '@components';
 
   export default {
     data() {
       return {
-        msg: 'Welcome to Your Vue.js App',
-        message: '现在时间是：',
+        msg: 'Welcome to Your Vue.js App123',
+        message: '现在时间是：' + formatDate(Date.now()),
         start: false
       }
     },
-    created() {
-      this.getTenantInfo();
-    },
     methods: {
-      getTenantInfo() {
-        const data = {
-          tenant_key: '06db342e571d46da8867b79d7e8a47ea'
-        };
-        this.$services.funcTenantInfoGet({
-          data
-        }).then((res) => {
-          console.log('接口请求成功：' + JSON.stringify(res, null, 2));
-          this.message += formatDate(Date.now());
-        });
-      },
       handleSendCode() {
         setTimeout(() => {
           this.start = true;

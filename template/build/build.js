@@ -44,7 +44,7 @@ rm(config.build.assetsRoot, err => {
       if (err) return console.error('[webpack:build]: read index.html failed')
 
       const hash = stats.toJson('normal').hash || Date.now();
-      const content = html.replace('config.js', `config.js?${hash}`)
+      const content = html.replace('config.local.js', `config.local.js?${hash}`)
 
       fse.writeFileSync(path.join(config.build.assetsRoot, 'index.html'), content, 'utf-8')
     })
