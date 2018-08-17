@@ -126,7 +126,7 @@ const base = {
 
 if (process.env.NODE_ENV !== 'dll') {
   base.entry = {
-    app: config.directory.modules + '/main.js'
+    app: config.directory.src + '/main.js'
   }
 
   utils.writeFileConfigLocal();
