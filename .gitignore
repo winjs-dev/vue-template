@@ -62,3 +62,4 @@ dist
 .project
 .happypack
 .history
+yarn.lock
