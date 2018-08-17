@@ -5,6 +5,22 @@
 ### Bug Fixes
 
 * Fix build.js ([e94c4b9](https://github.com/cloud-templates/vue-template/commit/e94c4b9))
+* fix index.html,webpack settings ([c47935e](https://github.com/cloud-templates/vue-template/commit/c47935e))
+
+
+### Performance Improvements
+
+* **webpack settings:** wepack3.x -> webpack4.x ([d5faa98](https://github.com/cloud-templates/vue-template/commit/d5faa98))
+
+
+
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/cloud-templates/vue-template/compare/v2.1.8...v3.0.0) (2018-08-17)
+
+
+### Bug Fixes
+
+* Fix build.js ([e94c4b9](https://github.com/cloud-templates/vue-template/commit/e94c4b9))
 
 
 ### Performance Improvements
