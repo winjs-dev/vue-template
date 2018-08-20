@@ -12,7 +12,7 @@ const createLintingRule = () => ({
   test: /\.(js|vue)$/,
   loader: 'eslint-loader',
   enforce: 'pre',
-  include: [utils.resolve('src/modules')],
+  include: [utils.resolve('src')],
   options: {
     formatter: require('eslint-friendly-formatter'),
     emitWarning: !config.dev.showEslintErrorsInOverlay
@@ -61,7 +61,7 @@ const base = {
         test: /\.(js|jsx)$/,
         use: ['happypack/loader?id=happybabel'],
         // see the website https://github.com/vuejs-templates/webpack/issues/1140
-        include: [utils.resolve('src/modules'), utils.resolve('node_modules/webpack-dev-server/client')]
+        include: [utils.resolve('src'), utils.resolve('node_modules/webpack-dev-server/client')]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,

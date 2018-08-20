@@ -196,7 +196,6 @@ exports.writeFileConfigLocal = function () {
 /**
  *
  * @authors ${pkg.author}
- * @date    ${formatDate(Date.now())}
  * @description 根据不同环境配置对应的服务地址及变量，这里只放置必须要手动修改的变量
  */
  
