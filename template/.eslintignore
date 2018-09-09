@@ -4,3 +4,4 @@
 node_modules
 /dev/
 RESTFULLURL.js
+/static/config.local.js
