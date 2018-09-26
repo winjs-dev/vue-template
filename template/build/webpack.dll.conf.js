@@ -108,7 +108,7 @@ if (config.build.productionGzip) {
 
   webpackConfig.plugins.push(
     new CompressionWebpackPlugin({
-      asset: '[path].gz[query]',
+      filename: '[path].gz[query]',
       algorithm: 'gzip',
       test: new RegExp(
         '\\.(' +
@@ -116,7 +116,8 @@ if (config.build.productionGzip) {
         ')$'
       ),
       threshold: 10240,
-      minRatio: 0.8
+      minRatio: 0.8,
+      cache: true
     })
   )
 }
