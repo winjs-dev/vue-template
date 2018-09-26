@@ -1,4 +1,25 @@
 <a name="3.0.1"></a>
+## [3.0.1](https://github.com/cloud-templates/vue-template/compare/v2.1.8...v3.0.1) (2018-09-26)
+
+
+### Bug Fixes
+
+* Fix build.js ([e94c4b9](https://github.com/cloud-templates/vue-template/commit/e94c4b9))
+* fix index.html,webpack settings ([c47935e](https://github.com/cloud-templates/vue-template/commit/c47935e))
+* postcss related configuration modification ([c40dd41](https://github.com/cloud-templates/vue-template/commit/c40dd41))
+* update html-webpack-plugin script-ext-html-webpack-plugin version ([ddb8707](https://github.com/cloud-templates/vue-template/commit/ddb8707))
+* webpack.dll.conf.js 文件中compression-webpack-plugin 属性名称修改 ([b33b6e8](https://github.com/cloud-templates/vue-template/commit/b33b6e8))
+
+
+### Performance Improvements
+
+* **webpack settings:** wepack3.x -> webpack4.x ([d5faa98](https://github.com/cloud-templates/vue-template/commit/d5faa98))
+* index.html 中的 config.js 文件放到 body 底部 ([d5b76b3](https://github.com/cloud-templates/vue-template/commit/d5b76b3))
+* update `compression-webpack-plugin` version ([130e6e6](https://github.com/cloud-templates/vue-template/commit/130e6e6))
+
+
+
+<a name="3.0.1"></a>
 ## [3.0.1](https://github.com/cloud-templates/vue-template/compare/v2.1.8...v3.0.1) (2018-09-07)
 
 
