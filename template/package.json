@@ -24,6 +24,7 @@
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
+    "@vue/preload-webpack-plugin": "^1.1.0",
     "address": "^1.0.3",
     "archiver": "^2.1.1",
     "autoprefixer": "^8.5.0",
