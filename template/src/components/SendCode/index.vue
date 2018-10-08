@@ -47,7 +47,7 @@
           second <= 0 && this.stop();
         }, 1000);
       },
-      stop: function () {
+      stop () {
         this.text = this.resetText;
         this.$emit('input', false);
         clearInterval(this.timer);
@@ -57,7 +57,7 @@
       }
     },
     watch: {
-      value: function (val) {
+      value (val) {
         this.isStart = val;
         val && this.run();
       }
@@ -67,7 +67,7 @@
         this.text = this.initText;
       }
     },
-    destoryed() {
+    destroyed() {
       this.stop();
     }
   }

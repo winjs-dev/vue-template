@@ -1,5 +1,4 @@
 'use strict'
-const {formatDate} = require('cloud-utils')
 const fs = require('fs')
 const path = require('path')
 const config = require('./config')
@@ -35,6 +34,17 @@ exports.cssLoaders = function (options) {
     }
   }
 
+  var styleResourcesLoader = {
+    loader: 'style-resources-loader',
+    options: {
+      patterns: [
+        exports.resolve('src/assets/less/variable.less'),
+        exports.resolve('node_modules/magicless/magicless.less')
+      ],
+      injector: 'prepend'
+    }
+  }
+
   // generate loader string to be used with extract text plugin
   function generateLoaders(loader, loaderOptions) {
     const loaders = [];
@@ -61,6 +71,8 @@ exports.cssLoaders = function (options) {
         })
       })
     }
+
+    loaders.push(styleResourcesLoader)
 
     return loaders;
   }
