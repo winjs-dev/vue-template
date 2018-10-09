@@ -70,9 +70,10 @@ exports.cssLoaders = function (options) {
           sourceMap: options.sourceMap
         })
       })
+      if (loader === 'less') {
+        loaders.push(styleResourcesLoader)
+      }
     }
-
-    loaders.push(styleResourcesLoader)
 
     return loaders;
   }

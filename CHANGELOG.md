@@ -1,5 +1,5 @@
 <a name="3.0.2"></a>
-## [3.0.2](https://github.com/cloud-templates/vue-template/compare/v2.1.8...v3.0.2) (2018-10-08)
+## [3.0.2](https://github.com/cloud-templates/vue-template/compare/v2.1.8...v3.0.2) (2018-10-09)
 
 
 ### Bug Fixes
