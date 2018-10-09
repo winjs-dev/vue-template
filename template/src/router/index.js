@@ -10,13 +10,13 @@ import Router from 'vue-router';
 
 Vue.use(Router);
 
-const Hello = () => import(/* webpackChunkName: "hello" */ '@views/hello');
+const loadView = (view) => () => import(`@views/${view}`);
 
 const routes = [
   {
     path: '/',
     name: 'hello',
-    component: Hello
+    component: loadView('hello')
   },
   {
     path: '*', redirect: '/'
