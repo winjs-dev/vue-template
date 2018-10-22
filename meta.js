@@ -39,7 +39,8 @@ module.exports = {
     },
     cssSprite: {
       type: 'confirm',
-      message: 'Install webpack-spritesmith?'
+      message: 'Install webpack-spritesmith?',
+      default: false
     },
     autoInstall: {
       type: 'list',
