@@ -52,7 +52,15 @@ exports.cssLoaders = function (options) {
     // Extract CSS when that option is specified
     // (which is the case during production build)
     if (options.extract) {
-      loaders.push(MiniCssExtractPlugin.loader)
+      loaders.push({
+        loader: MiniCssExtractPlugin.loader,
+        options: {
+          // you can specify a publicPath here
+          // by default it use publicPath in webpackOptions.output
+          // 解决图片作为背景引入时，路径不对的问题
+          publicPath: '../../'
+        }
+      })
     } else {
       loaders.push('vue-style-loader')
     }
