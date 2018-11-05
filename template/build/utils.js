@@ -210,21 +210,3 @@ exports.printInstructions = function (appName, urls, useYarn) {
     Note that the development build is not optimized. \n
     To create a production build, use ${chalk.cyan(`${useYarn ? 'yarn' : 'npm run'} build`)}. \n`
 }
-
-// 读取node-config配置文件，生成config.local.js
-exports.writeFileConfigLocal = function () {
-  const data = `
-/**
- *
- * @authors ${pkg.author}
- * @description 根据不同环境配置对应的服务地址及变量，这里只放置必须要手动修改的变量
- */
- 
-window.LOCAL_CONFIG = ${JSON.stringify(nodeConfig, null, 2)}`;
-
-  fs.writeFileSync(`static/config.local.js`, data, 'utf-8', (err) => {
-    console.log(data, err);
-    if (err) throw err;
-    console.log(`static/config.local.js has been generated`);
-  });
-}

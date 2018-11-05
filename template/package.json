@@ -16,7 +16,6 @@
   "dependencies": {
     "axios": "^0.18.0",
     "cloud-utils": "latest",
-    "config": "^1.30.0",
     "lib-flexible": "^0.3.2",
     "magicless": "latest",
     "normalize.css": "^7.0.0",

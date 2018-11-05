@@ -132,8 +132,6 @@ if (process.env.NODE_ENV !== 'dll') {
   base.entry = {
     app: config.directory.src + '/main.js'
   }
-
-  utils.writeFileConfigLocal();
 }
 
 module.exports = base;
