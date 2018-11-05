@@ -1,4 +1,4 @@
-# vue-template
+# vue-template-extend-config
 基于vue创建的模板
 
 ## Usage

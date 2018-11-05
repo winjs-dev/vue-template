@@ -2,7 +2,9 @@
 const fs = require('fs')
 const path = require('path')
 const config = require('./config')
-const nodeConfig = require('config')
+const extend = require('./extend')
+const devConfig = require('../config/development')
+const proConfig = require('../config/production')
 const address = require('address')
 const chalk = require('chalk')
 const url = require('url')
@@ -213,6 +215,7 @@ exports.printInstructions = function (appName, urls, useYarn) {
 
 // 读取node-config配置文件，生成config.local.js
 exports.writeFileConfigLocal = function () {
+  const nodeConfig = extend(devConfig, proConfig);
   const data = `
 /**
  *
@@ -222,8 +225,7 @@ exports.writeFileConfigLocal = function () {
  
 window.LOCAL_CONFIG = ${JSON.stringify(nodeConfig, null, 2)}`;
 
-  fs.writeFileSync(`static/config.local.js`, data, 'utf-8', (err) => {
-    console.log(data, err);
+  fs.writeFileSync(`${config.build.assetsRoot}/config.local.js`, data, 'utf-8', (err) => {
     if (err) throw err;
     console.log(`static/config.local.js has been generated`);
   });

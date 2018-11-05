@@ -49,6 +49,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       filename: config.build.index,
       template: path.join(config.directory.root, 'index.html'),
       inject: true,
+      isProduction: utils.isProduction(),
       minify: {
         removeComments: true,
         collapseWhitespace: true,

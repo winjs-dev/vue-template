@@ -16,7 +16,9 @@
 </head>
 <body>
 <div id="app"></div>
+<% if (htmlWebpackPlugin.options.isProduction) {%>
 <script src="static/config.local.js"></script>
+<% } %>
 <script src="static/dll/vendor.dll.js"></script>
 <!-- built files will be auto injected -->
 </body>

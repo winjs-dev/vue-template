@@ -62,7 +62,8 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
-      inject: true
+      inject: true,
+      isProduction: utils.isProduction()
     }),
     new PreloadPlugin(
       {

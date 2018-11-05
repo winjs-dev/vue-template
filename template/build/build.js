@@ -4,6 +4,7 @@ require('./check-versions')()
 process.env.NODE_ENV = 'production'
 
 const ora = require('ora')
+const utils = require('./utils')
 const rm = require('rimraf')
 const path = require('path')
 const fse = require('fs-extra')
@@ -38,7 +39,7 @@ rm(config.build.assetsRoot, err => {
       console.log(chalk.red('  Build failed with errors.\n'))
       process.exit(1)
     }
-
+    utils.writeFileConfigLocal()
     // 为dist目录下index.html引用的config.js添加hash,去除缓存
     fse.readFile(path.join(config.build.assetsRoot, 'index.html'), 'utf-8', function(err, html) {
       if (err) return console.error('[webpack:build]: read index.html failed')
