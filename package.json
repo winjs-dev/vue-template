@@ -1,12 +1,13 @@
 {
   "name": "vue-template",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "license": "MIT",
   "description": "A vue template.",
   "scripts": {
     "release": "bash release.sh",
     "commit": "git cz",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 1"
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 1",
+    "build": "git commit -am $npm_package_version && git tag $npm_package_version && git push && git push --tags"
   },
   "devDependencies": {
     "vue-cli": "^2.8.1",
