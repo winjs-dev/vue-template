@@ -1,8 +1,6 @@
 'use strict'
-const fs = require('fs')
 const path = require('path')
 const config = require('./config')
-const nodeConfig = require('config')
 const address = require('address')
 const chalk = require('chalk')
 const url = require('url')
