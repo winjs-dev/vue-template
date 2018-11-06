@@ -122,7 +122,7 @@ const webpackConfig = merge(baseWebpackConfig, {
         ignore: ['.*']
       },
       {
-        from: path.resolve(__dirname, '../config.local.js\u914d\u7f6e\u8bf4\u660e'),
+        from: path.resolve(__dirname, '../config.local.js\u914d\u7f6e\u8bf4\u660e.txt'),
         to: config.build.assetsRoot,
         ignore: ['.*']
       }
