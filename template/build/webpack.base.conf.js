@@ -54,6 +54,7 @@ const base = {
     }
   },
   module: {
+    noParse: /^(vue|vue-router|vuex|vuex-router-sync)$/,
     rules: [
       ...(config.dev.useEslint? [createLintingRule()] : []),
       {
