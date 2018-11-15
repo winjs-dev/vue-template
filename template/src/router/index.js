@@ -10,7 +10,7 @@ import Router from 'vue-router';
 
 Vue.use(Router);
 
-const loadView = (view) => () => import(`@views/${view}`);
+const loadView = (view) => () => import(`@views/${view}/index.vue`);
 
 const routes = [
   {
