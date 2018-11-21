@@ -49,7 +49,7 @@ const base = {
       // 文件别名
       'services': utils.resolve('src/services'),
       'variable': utils.resolve('src/assets/less/variable.less'),
-      'utils': utils.resolve('node_modules/cloud-utils/dist/cloud-utils.esm'),
+      'utils': utils.resolve('node_modules/@liwb/cloud-utils/dist/cloud-utils.esm'),
       'mixins': utils.resolve('node_modules/magicless/magicless.less')
     }
   },
